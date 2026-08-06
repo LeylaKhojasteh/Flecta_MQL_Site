@@ -1,0 +1,860 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+FLECTA | MQL Development
+{% endblock %}
+
+{% block meta_description %}
+FLECTA provides custom MQL4 and MQL5 development services including Expert Advisors, indicators, trading tools, and MetaTrader automation solutions.
+{% endblock %}
+
+{% block body_class %}
+home-page
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================
+     Hero
+====================================== -->
+<section class="home-hero">
+    <div class="container home-hero-container">
+
+        <div class="home-hero-content">
+
+            <h1>
+                Build smarter trading tools
+                with <span>FLECTA</span>
+            </h1>
+
+            <p>
+                Custom Expert Advisors, indicators, trading tools,
+                and automation solutions built around clear requirements,
+                maintainable code, and your actual trading workflow.
+            </p>
+
+            <div class="home-hero-actions">
+                <a href="/contact/" class="button button-primary">
+                    Order a Project
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12H19"></path>
+                        <path d="M13 6L19 12L13 18"></path>
+                    </svg>
+                </a>
+
+                <a href="#services" class="hero-secondary-button">
+                    Explore Services
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 5V19"></path>
+                        <path d="M6 13L12 19L18 13"></path>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- Hero Visual -->
+        <div class="home-hero-visual" aria-hidden="true">
+
+            <div class="hero-visual-grid"></div>
+            <div class="hero-visual-glow"></div>
+
+            <div class="hero-dashboard-card hero-dashboard-main">
+
+                <div class="hero-dashboard-header">
+                    <div class="hero-window-controls">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span class="hero-dashboard-file">
+                        FLECTA_EA.mq5
+                    </span>
+
+                    <span class="hero-dashboard-tag">
+                        BUILD READY
+                    </span>
+                </div>
+
+                <div class="hero-code-block">
+
+                    <div class="hero-code-line">
+                        <span class="code-line-number">01</span>
+                        <code>
+                            <span class="code-keyword">input</span>
+                            <span class="code-type">double</span>
+                            RiskPercent =
+                            <span class="code-value">1.5</span>;
+                        </code>
+                    </div>
+
+                    <div class="hero-code-line">
+                        <span class="code-line-number">02</span>
+                        <code>
+                            <span class="code-keyword">input</span>
+                            <span class="code-type">int</span>
+                            TakeProfit =
+                            <span class="code-value">120</span>;
+                        </code>
+                    </div>
+
+                    <div class="hero-code-line">
+                        <span class="code-line-number">03</span>
+                        <code>
+                            <span class="code-keyword">bool</span>
+                            signalConfirmed =
+                            <span class="code-value">true</span>;
+                        </code>
+                    </div>
+
+                    <div class="hero-code-line highlighted-code-line">
+                        <span class="code-line-number">04</span>
+                        <code>
+                            <span class="code-keyword">if</span>
+                            (signalConfirmed)
+                            ExecuteTrade();
+                        </code>
+                    </div>
+
+                    <div class="hero-code-line">
+                        <span class="code-line-number">05</span>
+                        <code>
+                            ManageOpenPositions();
+                        </code>
+                    </div>
+
+                </div>
+
+                <div class="hero-chart-area">
+                    <div class="hero-chart-header">
+                        <span>Strategy workspace</span>
+                        <span>MetaTrader 5</span>
+                    </div>
+
+                    <div class="hero-chart">
+                        <div class="chart-candles">
+                            <span class="candle candle-1"></span>
+                            <span class="candle candle-2"></span>
+                            <span class="candle candle-3"></span>
+                            <span class="candle candle-4"></span>
+                            <span class="candle candle-5"></span>
+                            <span class="candle candle-6"></span>
+                            <span class="candle candle-7"></span>
+                            <span class="candle candle-8"></span>
+                        </div>
+
+                        <svg viewBox="0 0 500 160" preserveAspectRatio="none">
+                            <path
+                                d="M0 120
+                                   C50 110 70 100 110 108
+                                   C150 116 170 62 220 78
+                                   C270 94 300 45 350 58
+                                   C400 71 430 36 500 20"
+                                class="hero-chart-line"
+                            ></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="hero-dashboard-footer">
+                    <span>
+                        <i></i>
+                        Compilation successful
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-mini-card hero-mini-card-top">
+                <span class="mini-card-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 16L9 11L13 14L20 6"></path>
+                        <path d="M16 6H20V10"></path>
+                    </svg>
+                </span>
+
+                <div>
+                    <small>Service focus</small>
+                    <strong>Trading Automation</strong>
+                </div>
+            </div>
+
+            <div class="hero-mini-card hero-mini-card-bottom">
+                <span class="mini-card-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3L20 7V12C20 17 16.6 20.3 12 22C7.4 20.3 4 17 4 12V7L12 3Z"></path>
+                        <path d="M8 12L11 15L16 9"></path>
+                    </svg>
+                </span>
+
+                <div>
+                    <small>Development standard</small>
+                    <strong>Clean & Testable</strong>
+                </div>
+            </div>
+
+            <div class="hero-stats-card">
+                <div class="hero-stat-item">
+                    <strong>MQL4</strong>
+                    <span>MetaTrader 4</span>
+                </div>
+
+                <div class="hero-stat-item">
+                    <strong>MQL5</strong>
+                    <span>MetaTrader 5</span>
+                </div>
+
+                <div class="hero-stat-item">
+                    <strong>PineScript</strong>
+                    <span>TradingView</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================
+     Services — Bento Layout
+====================================== -->
+<section class="home-services" id="services">
+    <div class="container">
+
+        <div class="home-section-heading home-section-heading-centered">
+            <span class="section-label">Our Services</span>
+
+            <h2>
+                Development services shaped around your trading workflow
+            </h2>
+
+            <p>
+                From complete trading systems to focused code improvements,
+                every service starts with a clear technical scope.
+            </p>
+        </div>
+
+        <div class="services-grid services-bento">
+
+            <article class="service-card service-card-featured service-card-ea">
+                <div class="service-card-top">
+                    <span class="service-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 16L9 11L13 14L20 6"></path>
+                            <path d="M16 6H20V10"></path>
+                        </svg>
+                    </span>
+
+                    <span class="service-index">01</span>
+                </div>
+
+                <div class="service-card-copy">
+                    <span class="service-tag">Most requested</span>
+                    <h3>Custom Expert Advisors</h3>
+
+                    <p>
+                        Automated trading systems based on your entry,
+                        exit, risk, filtering, and position-management rules.
+                    </p>
+
+                    <ul class="service-points">
+                        <li>Rule-based execution</li>
+                        <li>Risk controls</li>
+                        <li>Trade management</li>
+                    </ul>
+                </div>
+
+                <div class="service-mini-terminal" aria-hidden="true">
+                    <div class="service-terminal-row">
+                        <span>strategy</span>
+                        <strong>active</strong>
+                    </div>
+                    <div class="service-terminal-row">
+                        <span>risk model</span>
+                        <strong>verified</strong>
+                    </div>
+                    <div class="service-terminal-row">
+                        <span>execution</span>
+                        <strong>ready</strong>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-card service-card-featured service-card-indicator">
+                <div class="service-card-top">
+                    <span class="service-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 18L8 11L12 14L16 6L20 10"></path>
+                            <path d="M4 4V20H20"></path>
+                        </svg>
+                    </span>
+
+                    <span class="service-index">02</span>
+                </div>
+
+                <div class="service-card-copy">
+                    <span class="service-tag">Visual analysis</span>
+                    <h3>Custom Indicators</h3>
+
+                    <p>
+                        Signals, alerts, dashboards, and chart utilities
+                        designed around the way you analyse the market.
+                    </p>
+                </div>
+
+                <div class="service-wave" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </article>
+
+            <article class="service-card service-card-compact">
+                <div class="service-card-top">
+                    <span class="service-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 4H20V20H4Z"></path>
+                            <path d="M8 9L11 12L8 15"></path>
+                            <path d="M13 15H17"></path>
+                        </svg>
+                    </span>
+
+                    <span class="service-index">03</span>
+                </div>
+
+                <h3>MQL Code Debugging</h3>
+                <p>Resolve compilation errors, logic issues, and unstable behaviour.</p>
+            </article>
+
+            <article class="service-card service-card-compact">
+                <div class="service-card-top">
+                    <span class="service-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 7H20"></path>
+                            <path d="M4 12H14"></path>
+                            <path d="M4 17H10"></path>
+                            <circle cx="18" cy="15" r="3"></circle>
+                            <path d="M20 17L22 19"></path>
+                        </svg>
+                    </span>
+
+                    <span class="service-index">04</span>
+                </div>
+
+                <h3>Optimization</h3>
+                <p>Improve code structure, readability, speed, and maintainability.</p>
+            </article>
+
+            <article class="service-card service-card-compact">
+                <div class="service-card-top">
+                    <span class="service-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 4H19V20H5Z"></path>
+                            <path d="M8 8H16"></path>
+                            <path d="M8 12H16"></path>
+                            <path d="M8 16H13"></path>
+                        </svg>
+                    </span>
+
+                    <span class="service-index">05</span>
+                </div>
+
+                <h3>MQL4 to MQL5 Migration</h3>
+                <p>Modernise older projects while preserving the intended behaviour.</p>
+            </article>
+
+            <article class="service-card service-card-compact">
+                <div class="service-card-top">
+                    <span class="service-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 7V12L16 14"></path>
+                        </svg>
+                    </span>
+
+                    <span class="service-index">06</span>
+                </div>
+
+                <h3>Technical Consultation</h3>
+                <p>Clarify strategy logic, project scope, and implementation details.</p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================
+     Why Choose FLECTA — Quality Console
+====================================== -->
+<section class="home-why">
+    <div class="container home-why-container">
+
+        <div class="home-why-content">
+            <span class="section-label">Why FLECTA</span>
+
+            <h2>
+                Technical clarity before unnecessary complexity
+            </h2>
+
+            <p>
+                A trading tool should not only work today. It should also be
+                understandable when you need to test it, revise it, or add a new feature.
+                That is why every project begins with a clear scope and realistic expectations.
+            </p>
+
+            <a href="/about/" class="inline-link">
+                Learn more about FLECTA
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12H19"></path>
+                    <path d="M13 6L19 12L13 18"></path>
+                </svg>
+            </a>
+
+            <div class="why-metrics">
+                <div>
+                    <strong>MT4</strong>
+                    <span>Supported</span>
+                </div>
+                <div>
+                    <strong>MT5</strong>
+                    <span>Supported</span>
+                </div>
+                <div>
+                    <strong>Pine</strong>
+                    <span>Supported</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="quality-console">
+
+            <div class="quality-console-header">
+                <div>
+                    <span class="console-status-dot"></span>
+                    FLECTA project standard
+                </div>
+
+                <span>quality-check.json</span>
+            </div>
+
+            <div class="quality-console-body">
+
+                <article class="quality-row">
+                    <span class="quality-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 12L10 17L19 7"></path>
+                        </svg>
+                    </span>
+
+                    <div>
+                        <strong>Requirements mapped</strong>
+                        <p>Strategy rules, inputs, outputs, and edge cases are clarified first.</p>
+                    </div>
+
+                    <span class="quality-state">Verified</span>
+                </article>
+
+                <article class="quality-row">
+                    <span class="quality-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 12L10 17L19 7"></path>
+                        </svg>
+                    </span>
+
+                    <div>
+                        <strong>Maintainable structure</strong>
+                        <p>Code is organised for easier debugging, revision, and future updates.</p>
+                    </div>
+
+                    <span class="quality-state">Ready</span>
+                </article>
+
+                <article class="quality-row">
+                    <span class="quality-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 12L10 17L19 7"></path>
+                        </svg>
+                    </span>
+
+                    <div>
+                        <strong>Realistic delivery plan</strong>
+                        <p>Timeline and pricing are based on the actual project complexity.</p>
+                    </div>
+
+                    <span class="quality-state">Defined</span>
+                </article>
+
+                <article class="quality-row">
+                    <span class="quality-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 12L10 17L19 7"></path>
+                        </svg>
+                    </span>
+
+                    <div>
+                        <strong>Private project handling</strong>
+                        <p>Your strategy, source code, and technical details remain confidential.</p>
+                    </div>
+
+                    <span class="quality-state">Private</span>
+                </article>
+
+            </div>
+
+            <div class="quality-console-footer">
+                <span>4 checks completed</span>
+                <strong>Project standard passed</strong>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================
+     Use Cases — Asymmetric Layout
+====================================== -->
+<section class="home-use-cases">
+    <div class="container">
+
+        <div class="home-section-heading use-cases-heading">
+            <div>
+                <span class="section-label">Use Cases</span>
+
+                <h2>
+                    Examples of what we can build together
+                </h2>
+            </div>
+
+            <p>
+                Your idea does not need to arrive as a technical document.
+                These examples show how common trading needs can become structured projects.
+            </p>
+        </div>
+
+        <div class="use-cases-grid use-cases-bento">
+
+            <article class="use-case-card use-case-featured">
+                <div class="use-case-copy">
+                    <span class="use-case-tag">Automation</span>
+                    <h3>Trend-Following Expert Advisor</h3>
+
+                    <p>
+                        A complete automated system that confirms trend direction,
+                        controls risk, opens positions, and manages exits using your rules.
+                    </p>
+
+                    <ul>
+                        <li>Multi-condition entries</li>
+                        <li>Position sizing</li>
+                        <li>Trade management</li>
+                    </ul>
+                </div>
+
+                <div class="use-case-preview" aria-hidden="true">
+                    <div class="case-preview-header">
+                        <span>EURUSD · H1</span>
+                        <strong>Strategy active</strong>
+                    </div>
+
+                    <div class="case-preview-chart">
+                        <span class="case-candle case-candle-1"></span>
+                        <span class="case-candle case-candle-2"></span>
+                        <span class="case-candle case-candle-3"></span>
+                        <span class="case-candle case-candle-4"></span>
+                        <span class="case-candle case-candle-5"></span>
+                        <span class="case-candle case-candle-6"></span>
+                        <span class="case-candle case-candle-7"></span>
+                        <span class="case-candle case-candle-8"></span>
+
+                        <svg viewBox="0 0 420 150" preserveAspectRatio="none">
+                            <path d="M0 122 C60 118 72 95 126 102 C180 109 197 63 245 76 C296 90 327 37 420 28"></path>
+                        </svg>
+                    </div>
+
+                    <div class="case-preview-footer">
+                        <span>Risk: 1.0%</span>
+                        <span>Filter: Confirmed</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="use-case-card use-case-small">
+                <span class="use-case-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3L20 7V12C20 17 16.6 20.3 12 22C7.4 20.3 4 17 4 12V7L12 3Z"></path>
+                        <path d="M8 12L11 15L16 9"></path>
+                    </svg>
+                </span>
+
+                <span class="use-case-tag">Risk</span>
+                <h3>Risk Management Tool</h3>
+                <p>Calculate lot size, stop loss, exposure, and daily risk limits.</p>
+            </article>
+
+            <article class="use-case-card use-case-small">
+                <span class="use-case-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 18L8 11L12 14L16 6L20 10"></path>
+                        <path d="M4 4V20H20"></path>
+                    </svg>
+                </span>
+
+                <span class="use-case-tag">Analysis</span>
+                <h3>Signal Indicator</h3>
+                <p>Display alerts, arrows, confirmations, and visual chart conditions.</p>
+            </article>
+
+            <article class="use-case-card use-case-small use-case-wide">
+                <span class="use-case-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 4H19V20H5Z"></path>
+                        <path d="M8 8H16"></path>
+                        <path d="M8 12H16"></path>
+                        <path d="M8 16H13"></path>
+                    </svg>
+                </span>
+
+                <span class="use-case-tag">Modernisation</span>
+                <h3>MQL4 to MQL5 Migration</h3>
+                <p>
+                    Rebuild an older MQL4 project with a cleaner MQL5 structure
+                    while preserving the intended strategy behaviour.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================
+     Blog Preview — Unique CSS Covers
+====================================== -->
+<section class="home-blog-preview">
+    <div class="container">
+
+        <div class="blog-section-header">
+            <div class="home-section-heading">
+                <span class="section-label">Latest Articles</span>
+
+                <h2>
+                    Practical MQL learning resources
+                </h2>
+
+                <p>
+                    Tutorials and development notes for traders who want to
+                    understand the software behind their trading tools.
+                </p>
+            </div>
+
+            <a href="/blog/" class="blog-all-link">
+                View all articles
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12H19"></path>
+                    <path d="M13 6L19 12L13 18"></path>
+                </svg>
+            </a>
+        </div>
+
+        <div class="blog-preview-grid">
+
+            <article class="blog-preview-card">
+                <div class="blog-preview-cover blog-cover-code">
+                    <div class="blog-cover-topline">
+                        <span>MQL Basics</span>
+                        <small>01</small>
+                    </div>
+
+                    <div class="blog-code-visual" aria-hidden="true">
+                        <i><b>input</b> double Risk = <em>1.0</em>;</i>
+                        <i><b>bool</b> signal = <em>true</em>;</i>
+                        <i class="active">if(signal) ExecuteTrade();</i>
+                    </div>
+                </div>
+
+                <div class="blog-preview-content">
+                    <div class="blog-meta">
+                        <span>Tutorial</span>
+                        <span>6 min read</span>
+                    </div>
+
+                    <h3>
+                        Getting Started with MQL5 for Trading Automation
+                    </h3>
+
+                    <p>
+                        A beginner-friendly introduction to building trading systems
+                        and chart tools with MQL5.
+                    </p>
+
+                    <a href="/blog/" class="blog-preview-link">
+                        Read article
+                        <span>↗</span>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-preview-card">
+                <div class="blog-preview-cover blog-cover-flow">
+                    <div class="blog-cover-topline">
+                        <span>Expert Advisors</span>
+                        <small>02</small>
+                    </div>
+
+                    <div class="blog-flow-visual" aria-hidden="true">
+                        <span>Signal</span>
+                        <i></i>
+                        <span>Risk</span>
+                        <i></i>
+                        <span>Execute</span>
+                    </div>
+                </div>
+
+                <div class="blog-preview-content">
+                    <div class="blog-meta">
+                        <span>Development</span>
+                        <span>8 min read</span>
+                    </div>
+
+                    <h3>
+                        Important Things to Define Before Building an EA
+                    </h3>
+
+                    <p>
+                        The strategy details and technical decisions that should
+                        be clarified before development begins.
+                    </p>
+
+                    <a href="/blog/" class="blog-preview-link">
+                        Read article
+                        <span>↗</span>
+                    </a>
+                </div>
+            </article>
+
+            <article class="blog-preview-card">
+                <div class="blog-preview-cover blog-cover-refactor">
+                    <div class="blog-cover-topline">
+                        <span>Optimization</span>
+                        <small>03</small>
+                    </div>
+
+                    <div class="blog-refactor-visual" aria-hidden="true">
+                        <div>
+                            <small>Before</small>
+                            <i></i><i></i><i></i><i></i>
+                        </div>
+                        <span>→</span>
+                        <div>
+                            <small>After</small>
+                            <i></i><i></i><i></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-preview-content">
+                    <div class="blog-meta">
+                        <span>Guide</span>
+                        <span>5 min read</span>
+                    </div>
+
+                    <h3>
+                        How to Improve the Structure of Existing MQL Code
+                    </h3>
+
+                    <p>
+                        Practical ways to clean up logic, reduce repetition,
+                        and make maintenance easier.
+                    </p>
+
+                    <a href="/blog/" class="blog-preview-link">
+                        Read article
+                        <span>↗</span>
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================
+     Final CTA
+====================================== -->
+<section class="home-cta">
+    <div class="container">
+
+        <div class="home-cta-card">
+
+            <div class="home-cta-content">
+                <span class="home-cta-label">
+                    Ready to start?
+                </span>
+
+                <h2>
+                    Let’s turn your trading logic into a real tool
+                </h2>
+
+                <p>
+                    Share your idea and receive a clear development path
+                    for your Expert Advisor, indicator, or trading utility.
+                </p>
+            </div>
+
+            <div class="home-cta-visual" aria-hidden="true">
+                <span class="cta-orbit cta-orbit-one">MQL4</span>
+                <span class="cta-orbit cta-orbit-two">MQL5</span>
+                <span class="cta-orbit cta-orbit-three">PINE</span>
+
+                <div class="cta-code-chip">
+                    <span></span>
+                    project.ready = true;
+                </div>
+            </div>
+
+            <div class="home-cta-actions">
+                <a href="/contact/" class="button button-primary">
+                    Order a Project
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12H19"></path>
+                        <path d="M13 6L19 12L13 18"></path>
+                    </svg>
+                </a>
+
+                <a href="/about/" class="home-cta-secondary">
+                    Learn More About FLECTA
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,895 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+About Us | FLECTA
+{% endblock %}
+
+{% block meta_description %}
+Learn more about FLECTA, our approach to professional MQL4 and MQL5 development, trading automation, Expert Advisors, and custom indicators.
+{% endblock %}
+
+{% block body_class %}
+about-page
+{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{% static 'css/about.css' %}"
+>
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================
+     About Hero
+====================================== -->
+<section class="about-hero">
+    <div class="container about-hero-container">
+
+        <div class="about-hero-content">
+
+            <h1>
+                We turn trading ideas into
+                <span>reliable MQL solutions.</span>
+            </h1>
+
+            <p>
+                FLECTA develops custom Expert Advisors, indicators,
+                scripts, and trading tools for MetaTrader 4 and
+                MetaTrader 5. Our goal is to transform clear trading
+                rules into structured, maintainable, and testable code.
+            </p>
+
+            <div class="about-hero-actions">
+
+                <a
+                    href="/contact/"
+                    class="button button-primary"
+                >
+                    Order a Project
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12H19"></path>
+                        <path d="M13 6L19 12L13 18"></path>
+                    </svg>
+                </a>
+
+                <a
+                    href="#our-story"
+                    class="about-secondary-button"
+                >
+                    Discover FLECTA
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 5V19"></path>
+                        <path d="M6 13L12 19L18 13"></path>
+                    </svg>
+                </a>
+
+            </div>
+
+            <div class="about-hero-features">
+
+                <div class="about-hero-feature">
+                    <span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 12L10 17L19 7"></path>
+                        </svg>
+                    </span>
+
+                    MQL4 & MQL5
+                </div>
+
+                <div class="about-hero-feature">
+                    <span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 12L10 17L19 7"></path>
+                        </svg>
+                    </span>
+
+                    Custom Development
+                </div>
+
+                <div class="about-hero-feature">
+                    <span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 12L10 17L19 7"></path>
+                        </svg>
+                    </span>
+
+                    Clear Communication
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Hero Visual -->
+        <div class="about-hero-visual" aria-hidden="true">
+
+            <div class="about-terminal">
+
+                <div class="about-terminal-header">
+
+                    <div class="terminal-controls">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span class="terminal-file">
+                        FlectaExpert.mq5
+                    </span>
+
+                    <span class="terminal-status">
+                        MQL5
+                    </span>
+
+                </div>
+
+                <div class="about-terminal-body">
+
+                    <div class="terminal-line">
+                        <span class="line-number">01</span>
+
+                        <code>
+                            <span class="code-purple">class</span>
+                            <span class="code-blue">FlectaStrategy</span>
+                        </code>
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="line-number">02</span>
+
+                        <code>{</code>
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="line-number">03</span>
+
+                        <code>
+                            &nbsp;&nbsp;
+                            <span class="code-purple">private</span>
+                            <span class="code-blue">double</span>
+                            riskPercent;
+                        </code>
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="line-number">04</span>
+
+                        <code>
+                            &nbsp;&nbsp;
+                            <span class="code-purple">private</span>
+                            <span class="code-blue">bool</span>
+                            signalConfirmed;
+                        </code>
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="line-number">05</span>
+
+                        <code>&nbsp;</code>
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="line-number">06</span>
+
+                        <code>
+                            &nbsp;&nbsp;
+                            <span class="code-purple">void</span>
+                            <span class="code-yellow">AnalyzeMarket</span>()
+                        </code>
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="line-number">07</span>
+
+                        <code>&nbsp;&nbsp;{</code>
+                    </div>
+
+                    <div class="terminal-line highlighted-line">
+                        <span class="line-number">08</span>
+
+                        <code>
+                            &nbsp;&nbsp;&nbsp;&nbsp;signalConfirmed =
+                            <span class="code-green">true</span>;
+                        </code>
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="line-number">09</span>
+
+                        <code>&nbsp;&nbsp;}</code>
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="line-number">10</span>
+
+                        <code>};</code>
+                    </div>
+
+                </div>
+
+                <div class="terminal-footer">
+
+                    <span>
+                        <span class="terminal-dot"></span>
+                        Build successful
+                    </span>
+
+                    <span>0 errors</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="about-floating-card about-floating-card-top">
+
+                <span class="floating-card-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 16L9 11L13 14L20 6"></path>
+                        <path d="M16 6H20V10"></path>
+                    </svg>
+                </span>
+
+                <div>
+                    <small>Development Focus</small>
+                    <strong>Trading Automation</strong>
+                </div>
+
+            </div>
+
+
+            <div class="about-floating-card about-floating-card-bottom">
+
+                <span class="floating-card-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3L20 7V12C20 17 16.6 20.3 12 22C7.4 20.3 4 17 4 12V7L12 3Z"></path>
+                        <path d="M8 12L11 15L16 9"></path>
+                    </svg>
+                </span>
+
+                <div>
+                    <small>Development Standard</small>
+                    <strong>Clean & Testable Code</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================
+     Company Introduction
+====================================== -->
+<section class="about-story" id="our-story">
+    <div class="container about-story-container">
+
+        <div class="about-story-visual">
+
+            <div class="story-chart-card">
+
+                <div class="story-chart-header">
+                    <div>
+                        <span>Development Process</span>
+                        <strong>From idea to delivery</strong>
+                    </div>
+
+                    <span class="story-chart-badge">
+                        Structured
+                    </span>
+                </div>
+
+                <div class="story-chart">
+
+                    <svg
+                        viewBox="0 0 600 260"
+                        xmlns="http://www.w3.org/2000/svg"
+                        preserveAspectRatio="none"
+                    >
+                        <defs>
+                            <linearGradient
+                                id="aboutChartGradient"
+                                x1="0"
+                                y1="0"
+                                x2="0"
+                                y2="1"
+                            >
+                                <stop
+                                    offset="0%"
+                                    stop-color="#22c55e"
+                                    stop-opacity="0.28"
+                                />
+
+                                <stop
+                                    offset="100%"
+                                    stop-color="#22c55e"
+                                    stop-opacity="0"
+                                />
+                            </linearGradient>
+                        </defs>
+
+                        <path
+                            class="story-chart-area"
+                            d="M0 220
+                               C70 208 90 182 145 187
+                               C200 192 218 130 275 142
+                               C330 154 350 93 410 104
+                               C470 115 496 54 600 36
+                               L600 260
+                               L0 260Z"
+                        />
+
+                        <path
+                            class="story-chart-line"
+                            d="M0 220
+                               C70 208 90 182 145 187
+                               C200 192 218 130 275 142
+                               C330 154 350 93 410 104
+                               C470 115 496 54 600 36"
+                        />
+
+                        <circle cx="145" cy="187" r="6"></circle>
+                        <circle cx="275" cy="142" r="6"></circle>
+                        <circle cx="410" cy="104" r="6"></circle>
+                        <circle cx="600" cy="36" r="6"></circle>
+                    </svg>
+
+                    <div class="story-chart-grid"></div>
+
+                </div>
+
+                <div class="story-chart-labels">
+                    <span>Analysis</span>
+                    <span>Development</span>
+                    <span>Testing</span>
+                    <span>Delivery</span>
+                </div>
+
+            </div>
+
+
+            <div class="story-small-cards">
+
+                <div class="story-small-card">
+                    <span class="story-small-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 4H20V20H4Z"></path>
+                            <path d="M8 9L11 12L8 15"></path>
+                            <path d="M13 15H17"></path>
+                        </svg>
+                    </span>
+
+                    <div>
+                        <strong>Technical</strong>
+                        <small>Clear implementation</small>
+                    </div>
+                </div>
+
+                <div class="story-small-card">
+                    <span class="story-small-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 7V12L16 14"></path>
+                        </svg>
+                    </span>
+
+                    <div>
+                        <strong>Reliable</strong>
+                        <small>Organized workflow</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-story-content">
+
+            <span class="section-label">
+                About FLECTA
+            </span>
+
+            <h2>
+                Built around technical clarity,
+                not unrealistic promises.
+            </h2>
+
+            <p>
+                FLECTA is focused on developing practical software
+                solutions for traders who want to automate a strategy,
+                build a custom indicator, improve an existing MQL
+                project, or convert an idea into a working trading tool.
+            </p>
+
+            <p>
+                We believe successful development begins with clear
+                requirements. Before writing code, the strategy rules,
+                expected behavior, limitations, and testing conditions
+                should be understood as clearly as possible.
+            </p>
+
+            <div class="about-story-highlight">
+
+                <span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 4H20V20H4Z"></path>
+                        <path d="M8 9L11 12L8 15"></path>
+                        <path d="M13 15H17"></path>
+                    </svg>
+                </span>
+
+                <p>
+                    Our role is to implement your trading rules
+                    accurately. No Expert Advisor, indicator, or
+                    automated system can guarantee profitability.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================
+     Core Values
+====================================== -->
+<section class="about-values">
+    <div class="container">
+
+        <div class="about-section-heading about-section-heading-centered">
+
+            <span class="section-label">
+                Our Principles
+            </span>
+
+            <h2>
+                How we approach every project
+            </h2>
+
+            <p>
+                Every development project follows a simple set of
+                principles designed to make collaboration clearer
+                and the final code easier to maintain.
+            </p>
+
+        </div>
+
+
+        <div class="about-values-grid">
+
+            <article class="about-value-card">
+
+                <span class="about-value-number">
+                    01
+                </span>
+
+                <span class="about-value-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 5H20V19H4Z"></path>
+                        <path d="M8 9H16"></path>
+                        <path d="M8 13H14"></path>
+                        <path d="M8 17H12"></path>
+                    </svg>
+                </span>
+
+                <h3>Clear Requirements</h3>
+
+                <p>
+                    We define the strategy rules, inputs, outputs,
+                    and expected behavior before development begins.
+                </p>
+
+            </article>
+
+
+            <article class="about-value-card">
+
+                <span class="about-value-number">
+                    02
+                </span>
+
+                <span class="about-value-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 4H20V20H4Z"></path>
+                        <path d="M8 9L11 12L8 15"></path>
+                        <path d="M13 15H17"></path>
+                    </svg>
+                </span>
+
+                <h3>Clean Development</h3>
+
+                <p>
+                    Code is organized into understandable sections
+                    so future updates and debugging remain manageable.
+                </p>
+
+            </article>
+
+
+            <article class="about-value-card">
+
+                <span class="about-value-number">
+                    03
+                </span>
+
+                <span class="about-value-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 7V12L16 14"></path>
+                    </svg>
+                </span>
+
+                <h3>Realistic Planning</h3>
+
+                <p>
+                    Project pricing and delivery time are estimated
+                    according to the actual complexity of the work.
+                </p>
+
+            </article>
+
+
+            <article class="about-value-card">
+
+                <span class="about-value-number">
+                    04
+                </span>
+
+                <span class="about-value-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3L20 7V12C20 17 16.6 20.3 12 22C7.4 20.3 4 17 4 12V7L12 3Z"></path>
+                        <path d="M8 12L11 15L16 9"></path>
+                    </svg>
+                </span>
+
+                <h3>Confidentiality</h3>
+
+                <p>
+                    Your strategy, source code, and project information
+                    are treated as private development materials.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================
+     Expertise
+====================================== -->
+<section class="about-expertise">
+    <div class="container about-expertise-container">
+
+        <div class="about-expertise-content">
+
+            <span class="section-label">
+                Technical Expertise
+            </span>
+
+            <h2>
+                Development for the MetaTrader ecosystem
+            </h2>
+
+            <p>
+                FLECTA focuses on MQL development and the tools required
+                to build, test, improve, and maintain automated trading
+                solutions.
+            </p>
+
+            <a
+                href="/contact/"
+                class="about-inline-link"
+            >
+                Discuss your project
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12H19"></path>
+                    <path d="M13 6L19 12L13 18"></path>
+                </svg>
+            </a>
+
+        </div>
+
+
+        <div class="about-expertise-grid">
+
+            <article class="expertise-card expertise-card-featured">
+
+                <div class="expertise-card-top">
+
+                    <span class="expertise-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 4H20V20H4Z"></path>
+                            <path d="M8 9L11 12L8 15"></path>
+                            <path d="M13 15H17"></path>
+                        </svg>
+                    </span>
+
+                    <span class="expertise-tag">
+                        Core
+                    </span>
+
+                </div>
+
+                <h3>MQL4 & MQL5</h3>
+
+                <p>
+                    Custom development for MetaTrader 4 and
+                    MetaTrader 5 using structured MQL code.
+                </p>
+
+                <div class="expertise-technologies">
+                    <span>MQL4</span>
+                    <span>MQL5</span>
+                    <span>MT4</span>
+                    <span>MT5</span>
+                </div>
+
+            </article>
+
+
+            <article class="expertise-card">
+
+                <div class="expertise-card-top">
+
+                    <span class="expertise-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 16L9 11L13 14L20 6"></path>
+                            <path d="M16 6H20V10"></path>
+                        </svg>
+                    </span>
+
+                </div>
+
+                <h3>Expert Advisors</h3>
+
+                <p>
+                    Automated trade execution based on entry,
+                    exit, risk, and position-management rules.
+                </p>
+
+            </article>
+
+
+            <article class="expertise-card">
+
+                <div class="expertise-card-top">
+
+                    <span class="expertise-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 18L8 11L12 14L16 6L20 10"></path>
+                            <path d="M4 4V20H20"></path>
+                        </svg>
+                    </span>
+
+                </div>
+
+                <h3>Custom Indicators</h3>
+
+                <p>
+                    Visual indicators, trading signals, alerts,
+                    dashboards, and chart-based analysis tools.
+                </p>
+
+            </article>
+
+
+            <article class="expertise-card">
+
+                <div class="expertise-card-top">
+
+                    <span class="expertise-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 3L20 7V12C20 17 16.6 20.3 12 22C7.4 20.3 4 17 4 12V7L12 3Z"></path>
+                            <path d="M8 12L11 15L16 9"></path>
+                        </svg>
+                    </span>
+
+                </div>
+
+                <h3>Risk Management</h3>
+
+                <p>
+                    Lot-size calculation, stop-loss rules,
+                    exposure limits, and trade protection systems.
+                </p>
+
+            </article>
+
+
+            <article class="expertise-card">
+
+                <div class="expertise-card-top">
+
+                    <span class="expertise-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 7H20"></path>
+                            <path d="M4 12H14"></path>
+                            <path d="M4 17H10"></path>
+                            <circle cx="18" cy="15" r="3"></circle>
+                            <path d="M20 17L22 19"></path>
+                        </svg>
+                    </span>
+
+                </div>
+
+                <h3>Debugging & Optimization</h3>
+
+                <p>
+                    Fixing compilation errors, logical issues,
+                    performance problems, and existing MQL code.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================
+     Workflow
+====================================== -->
+<section class="about-workflow">
+    <div class="container">
+
+        <div class="about-section-heading">
+
+            <span class="section-label">
+                Our Workflow
+            </span>
+
+            <h2>
+                A clear development process
+            </h2>
+
+            <p>
+                The project moves through defined stages so both
+                sides know what is being developed and what happens next.
+            </p>
+
+        </div>
+
+
+        <div class="about-workflow-list">
+
+            <article class="workflow-item">
+
+                <div class="workflow-number">
+                    01
+                </div>
+
+                <div class="workflow-content">
+
+                    <span class="workflow-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 5H20V19H4Z"></path>
+                            <path d="M8 9H16"></path>
+                            <path d="M8 13H14"></path>
+                            <path d="M8 17H12"></path>
+                        </svg>
+                    </span>
+
+                    <h3>Requirement Review</h3>
+
+                    <p>
+                        We review the strategy, requested features,
+                        platform, and technical expectations.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="workflow-item">
+
+                <div class="workflow-number">
+                    02
+                </div>
+
+                <div class="workflow-content">
+
+                    <span class="workflow-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 4H20V20H4Z"></path>
+                            <path d="M8 9L11 12L8 15"></path>
+                            <path d="M13 15H17"></path>
+                        </svg>
+                    </span>
+
+                    <h3>Development</h3>
+
+                    <p>
+                        The approved requirements are implemented
+                        as structured MQL4 or MQL5 code.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="workflow-item">
+
+                <div class="workflow-number">
+                    03
+                </div>
+
+                <div class="workflow-content">
+
+                    <span class="workflow-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 4H19V20H5Z"></path>
+                            <path d="M8 8H16"></path>
+                            <path d="M8 12H16"></path>
+                            <path d="M8 16H13"></path>
+                            <path d="M16 15L18 17L22 12"></path>
+                        </svg>
+                    </span>
+
+                    <h3>Testing & Revision</h3>
+
+                    <p>
+                        The project is tested, reviewed, and adjusted
+                        according to the agreed requirements.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="workflow-item">
+
+                <div class="workflow-number">
+                    04
+                </div>
+
+                <div class="workflow-content">
+
+                    <span class="workflow-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 3V16"></path>
+                            <path d="M7 11L12 16L17 11"></path>
+                            <path d="M5 20H19"></path>
+                        </svg>
+                    </span>
+
+                    <h3>Delivery</h3>
+
+                    <p>
+                        The completed files are delivered with the
+                        agreed project details and usage information.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}

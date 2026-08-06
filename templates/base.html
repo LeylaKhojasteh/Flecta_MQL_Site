@@ -1,0 +1,668 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="{% block meta_description %}Professional MQL4 and MQL5 development, custom Expert Advisors, indicators, and automated trading systems.{% endblock %}"
+    >
+
+    <meta name="theme-color" content="#07130c">
+
+    <title>
+        {% block title %}FLECTA | MQL Development{% endblock %}
+    </title>
+
+    <!-- Prevent theme flashing during page load -->
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("mql-theme");
+
+            const systemPrefersLight = window.matchMedia(
+                "(prefers-color-scheme: light)"
+            ).matches;
+
+            const theme = savedTheme || (
+                systemPrefersLight ? "light" : "dark"
+            );
+
+            document.documentElement.setAttribute("data-theme", theme);
+        })();
+    </script>
+
+    <!-- English font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main stylesheet -->
+    <link
+        rel="stylesheet"
+        href="{% static 'css/base.css' %}"
+    >
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+    <!-- Accessibility skip link -->
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+    <!-- Decorative background elements -->
+    <div class="site-background" aria-hidden="true">
+        <div class="background-glow background-glow-one"></div>
+        <div class="background-glow background-glow-two"></div>
+        <div class="background-grid"></div>
+    </div>
+
+    <!-- =========================
+         Header
+    ========================== -->
+    <header class="site-header" id="site-header">
+
+        <div class="container header-container">
+
+            <!-- Logo -->
+            <a
+                href="/"
+                class="brand"
+                aria-label="FLECTA home page"
+            >
+                <span class="brand-logo" aria-hidden="true">
+                    <svg
+                        viewBox="0 0 48 48"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="4"
+                            y="4"
+                            width="40"
+                            height="40"
+                            rx="13"
+                            class="logo-background"
+                        />
+
+                        <path
+                            d="M14 30L20 24L25 28L35 17"
+                            class="logo-chart"
+                        />
+
+                        <path
+                            d="M31 17H35V21"
+                            class="logo-chart"
+                        />
+
+                        <path
+                            d="M15 16V25"
+                            class="logo-candle"
+                        />
+
+                        <rect
+                            x="12.5"
+                            y="18"
+                            width="5"
+                            height="5"
+                            rx="1"
+                            class="logo-candle-body"
+                        />
+
+                        <path
+                            d="M23 14V22"
+                            class="logo-candle"
+                        />
+
+                        <rect
+                            x="20.5"
+                            y="16"
+                            width="5"
+                            height="4"
+                            rx="1"
+                            class="logo-candle-body"
+                        />
+                    </svg>
+                </span>
+
+                <span class="brand-text">
+                    <strong>FLECTA</strong>
+                    <small>MQL</small>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav
+                class="desktop-navigation"
+                aria-label="Main navigation"
+            >
+                <a href="/" class="navigation-link">
+                    Home
+                </a>
+
+                <a href="/about/" class="navigation-link">
+                    About
+                </a>
+
+                <a href="/blog/" class="navigation-link">
+                    Blog
+                </a>
+
+                <a href="/contact/" class="navigation-link">
+                    Contact
+                </a>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+
+                <!-- Theme Button -->
+                <button
+                    type="button"
+                    class="icon-button theme-toggle"
+                    id="theme-toggle"
+                    aria-label="Change display theme"
+                    title="Change display theme"
+                >
+                    <svg
+                        class="theme-icon theme-icon-sun"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2V4"></path>
+                        <path d="M12 20V22"></path>
+                        <path d="M4.93 4.93L6.34 6.34"></path>
+                        <path d="M17.66 17.66L19.07 19.07"></path>
+                        <path d="M2 12H4"></path>
+                        <path d="M20 12H22"></path>
+                        <path d="M4.93 19.07L6.34 17.66"></path>
+                        <path d="M17.66 6.34L19.07 4.93"></path>
+                    </svg>
+
+                    <svg
+                        class="theme-icon theme-icon-moon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M21 12.8A9 9 0 1 1 11.2 3
+                            7 7 0 0 0 21 12.8Z"
+                        ></path>
+                    </svg>
+                </button>
+
+                <!-- Desktop CTA -->
+                <a
+                    href="/contact/"
+                    class="button button-primary header-cta"
+                >
+                    <span>Order a Project</span>
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path d="M5 12H19"></path>
+                        <path d="M13 6L19 12L13 18"></path>
+                    </svg>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button
+                    type="button"
+                    class="mobile-menu-button"
+                    id="mobile-menu-button"
+                    aria-label="Open mobile menu"
+                    aria-controls="mobile-navigation"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div
+            class="mobile-navigation"
+            id="mobile-navigation"
+            aria-hidden="true"
+        >
+            <nav
+                class="mobile-navigation-inner container"
+                aria-label="Mobile navigation"
+            >
+                <a href="/" class="mobile-navigation-link">
+                    <span class="mobile-link-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M3 11L12 3L21 11"></path>
+                            <path d="M5 10V21H19V10"></path>
+                            <path d="M9 21V14H15V21"></path>
+                        </svg>
+                    </span>
+
+                    <span>Home</span>
+                </a>
+
+                <a href="/about/" class="mobile-navigation-link">
+                    <span class="mobile-link-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 11V17"></path>
+                            <path d="M12 7H12.01"></path>
+                        </svg>
+                    </span>
+
+                    <span>About</span>
+                </a>
+
+                <a href="/blog/" class="mobile-navigation-link">
+                    <span class="mobile-link-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 4H20V20H4Z"></path>
+                            <path d="M8 8H16"></path>
+                            <path d="M8 12H16"></path>
+                            <path d="M8 16H13"></path>
+                        </svg>
+                    </span>
+
+                    <span>Blog</span>
+                </a>
+
+                <a href="/contact/" class="mobile-navigation-link">
+                    <span class="mobile-link-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 5H20V19H4Z"></path>
+                            <path d="M4 7L12 13L20 7"></path>
+                        </svg>
+                    </span>
+
+                    <span>Contact</span>
+                </a>
+
+                <a
+                    href="/contact/"
+                    class="button button-primary mobile-navigation-cta"
+                >
+                    Order a Project
+                </a>
+            </nav>
+        </div>
+
+        <div
+            class="mobile-navigation-overlay"
+            id="mobile-navigation-overlay"
+            aria-hidden="true"
+        ></div>
+
+    </header>
+
+    <!-- Django Messages -->
+    {% if messages %}
+        <section
+            class="messages-container container"
+            aria-label="System messages"
+        >
+            {% for message in messages %}
+                <div
+                    class="site-message site-message-{{ message.tags|default:'info' }}"
+                    role="alert"
+                >
+                    <span>{{ message }}</span>
+
+                    <button
+                        type="button"
+                        class="message-close"
+                        aria-label="Close message"
+                    >
+                        ×
+                    </button>
+                </div>
+            {% endfor %}
+        </section>
+    {% endif %}
+
+    <!-- =========================
+         Main Content
+    ========================== -->
+    <main id="main-content" class="site-main">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- =========================
+         Footer
+    ========================== -->
+    <footer class="site-footer">
+
+        <div class="footer-decoration" aria-hidden="true"></div>
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <!-- Brand Column -->
+                <div class="footer-brand-column">
+
+                    <a
+                        href="/"
+                        class="brand footer-brand"
+                        aria-label="FLECTA home page"
+                    >
+                        <span class="brand-logo" aria-hidden="true">
+                            <svg
+                                viewBox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <rect
+                                    x="4"
+                                    y="4"
+                                    width="40"
+                                    height="40"
+                                    rx="13"
+                                    class="logo-background"
+                                />
+
+                                <path
+                                    d="M14 30L20 24L25 28L35 17"
+                                    class="logo-chart"
+                                />
+
+                                <path
+                                    d="M31 17H35V21"
+                                    class="logo-chart"
+                                />
+
+                                <path
+                                    d="M15 16V25"
+                                    class="logo-candle"
+                                />
+
+                                <rect
+                                    x="12.5"
+                                    y="18"
+                                    width="5"
+                                    height="5"
+                                    rx="1"
+                                    class="logo-candle-body"
+                                />
+
+                                <path
+                                    d="M23 14V22"
+                                    class="logo-candle"
+                                />
+
+                                <rect
+                                    x="20.5"
+                                    y="16"
+                                    width="5"
+                                    height="4"
+                                    rx="1"
+                                    class="logo-candle-body"
+                                />
+                            </svg>
+                        </span>
+
+                        <span class="brand-text">
+                            <strong>FLECTA</strong>
+                            <small>MQL</small>
+                        </span>
+                    </a>
+
+                    <p class="footer-description">
+                        Professional development of Expert Advisors,
+                        Custom Indicators, and automated trading tools
+                        for MetaTrader4 / MetaTrader5 and Tradingview.
+                    </p>
+
+                    <div class="footer-status">
+                        <span class="status-dot"></span>
+                        Available for new projects
+                    </div>
+
+                    <div class="social-links">
+
+                        <a
+                            href="https://t.me/TheHayanVenera"
+                            class="social-link"
+                            aria-label="Telegram"
+                            title="Telegram"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M21 3L3 10L10 13L13 20L21 3Z"></path>
+                                <path d="M10 13L15 9"></path>
+                            </svg>
+                        </a>
+
+                        <!-- <a
+                            href="#"
+                            class="social-link"
+                            aria-label="LinkedIn"
+                            title="LinkedIn"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6 9V19"></path>
+                                <path d="M6 5V5.01"></path>
+                                <path d="M10 19V9"></path>
+                                <path d="M10 13C10 10.5 18 9.5 18 14V19"></path>
+                            </svg>
+                        </a> -->
+
+                        <a
+                            href="https://github.com/LeylaKhojasteh"
+                            class="social-link"
+                            aria-label="GitHub"
+                            title="GitHub"
+                        >
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M15 22V18C15.1 16.8 14.7 15.7
+                                    14 15C17 14.7 20 13.5 20 9
+                                    20 7.7 19.5 6.5 18.6 5.6
+                                    19 4.5 19 3.3 18.5 2.2
+                                    18.5 2.2 17.5 1.9 15 3.6
+                                    12.8 3 10.2 3 8 3.6
+                                    5.5 1.9 4.5 2.2 4.5 2.2
+                                    4 3.3 4 4.5 4.4 5.6
+                                    3.5 6.5 3 7.7 3 9
+                                    3 13.5 6 14.7 9 15
+                                    8.3 15.7 7.9 16.8 8 18V22"
+                                ></path>
+                            </svg>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h2 class="footer-title">Quick Links</h2>
+
+                    <ul class="footer-links">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="/about/">About Us</a>
+                        </li>
+
+                        <li>
+                            <a href="/blog/">Articles</a>
+                        </li>
+
+                        <li>
+                            <a href="/contact/">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-column">
+                    <h2 class="footer-title">Our Services</h2>
+
+                    <ul class="footer-links">
+                        <li>
+                            <a href="/contact/">
+                                Custom Expert Advisors
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/contact/">
+                                Custom Indicators
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/contact/">
+                                Money Management Systems
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/contact/">
+                                MQL4 to MQL5 Migration
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/contact/">
+                                Tradingview Development
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-column footer-contact-column">
+                    <h2 class="footer-title">Contact Us</h2>
+
+                    <ul class="footer-contact-list">
+
+                        <li>
+                            <span class="footer-contact-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 5H20V19H4Z"></path>
+                                    <path d="M4 7L12 13L20 7"></path>
+                                </svg>
+                            </span>
+
+                            <div>
+                                <small>Email</small>
+
+                                <a href="mailto:leyla.khojasteh80@gmail.com">
+                                    leyla.khojasteh80@gmail.com
+                                </a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="footer-contact-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9"></circle>
+                                    <path d="M12 7V12L15 15"></path>
+                                </svg>
+                            </span>
+
+                            <div>
+                                <small>Response Time</small>
+                                <span>Within 24 hours</span>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="footer-contact-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 4H20V20H4Z"></path>
+                                    <path d="M8 9L11 12L8 15"></path>
+                                    <path d="M13 15H17"></path>
+                                </svg>
+                            </span>
+
+                            <div>
+                                <small>Specialization</small>
+                                <span>MQL EA advisors, Indicators, Scripts, Pinescript and any AlgoTrading solutions</span>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Risk Disclaimer -->
+            <div class="risk-disclaimer">
+                <span class="risk-disclaimer-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3L22 20H2L12 3Z"></path>
+                        <path d="M12 9V14"></path>
+                        <path d="M12 17H12.01"></path>
+                    </svg>
+                </span>
+
+                <p>
+                    The content on this website is provided for educational
+                    and software development purposes only. It does not
+                    constitute financial or investment advice. Trading in
+                    financial markets involves risk.
+                </p>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+
+                <p>
+                    ©
+                    <span id="current-year">2026</span>
+                    All rights reserved by
+                    <strong>FLECTA</strong>.
+                </p>
+
+                <!-- <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div> -->
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- Back To Top -->
+    <button
+        type="button"
+        class="back-to-top"
+        id="back-to-top"
+        aria-label="Back to top"
+        title="Back to top"
+    >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 15L12 9L18 15"></path>
+        </svg>
+    </button>
+
+    <!-- Main JavaScript -->
+    <script src="{% static 'js/base.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
