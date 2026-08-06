@@ -1,0 +1,654 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Contact Us | FLECTA
+{% endblock %}
+
+{% block meta_description %}
+Contact FLECTA to order a custom MQL4 or MQL5 Expert Advisor, indicator, trading tool, or code debugging service.
+{% endblock %}
+
+{% block body_class %}
+contact-page
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================
+     Contact Hero
+====================================== -->
+<section class="contact-hero">
+	<div class="container">
+
+		<div class="contact-hero-content">
+
+
+			<h1>
+				Let’s build your
+				<span>MQL project</span>
+				together.
+			</h1>
+
+			<p>
+				Tell us about your trading idea, Expert Advisor,
+				custom indicator, or MQL development requirement.
+				We will review your request and get back to you
+				with a clear plan.
+			</p>
+
+			<div class="contact-hero-actions">
+				<a href="#project-form" class="button button-primary">
+					Order a Project
+
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M5 12H19"></path>
+						<path d="M13 6L19 12L13 18"></path>
+					</svg>
+				</a>
+
+			</div>
+
+		</div>
+
+	</div>
+</section>
+
+
+<!-- =====================================
+     Contact Main Section
+====================================== -->
+<section class="contact-section">
+	<div class="container">
+
+		<div class="contact-layout">
+
+			<!-- Contact Information -->
+			<aside class="contact-sidebar">
+
+				<div class="contact-sidebar-heading">
+					<span class="section-label">Contact FLECTA</span>
+
+					<h2>
+						Start your custom
+						trading project
+					</h2>
+
+					<p>
+						Describe your requirements as clearly as possible.
+						You do not need to prepare a technical document.
+						A simple explanation of your idea is enough to begin.
+					</p>
+				</div>
+
+
+				<div class="contact-info-list">
+
+					<!-- Email -->
+					<div class="contact-info-card">
+
+						<span class="contact-info-icon">
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M4 5H20V19H4Z"></path>
+								<path d="M4 7L12 13L20 7"></path>
+							</svg>
+						</span>
+
+						<div>
+							<span class="contact-info-label">
+								Email
+							</span>
+
+							<a href="mailto:leyla.khojasteh80@gmail.com">
+								leyla.khojasteh80@gmail.com
+							</a>
+						</div>
+
+					</div>
+
+
+					<!-- Response Time -->
+					<div class="contact-info-card">
+
+						<span class="contact-info-icon">
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<circle cx="12" cy="12" r="9"></circle>
+								<path d="M12 7V12L15 15"></path>
+							</svg>
+						</span>
+
+						<div>
+							<span class="contact-info-label">
+								Response Time
+							</span>
+
+							<strong>
+								Usually within 24 hours
+							</strong>
+						</div>
+
+					</div>
+
+
+					<!-- Specialization -->
+					<div class="contact-info-card">
+
+						<span class="contact-info-icon">
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M4 4H20V20H4Z"></path>
+								<path d="M8 9L11 12L8 15"></path>
+								<path d="M13 15H17"></path>
+							</svg>
+						</span>
+
+						<div>
+							<span class="contact-info-label">
+								Specialization
+							</span>
+
+							<strong>
+								MQL4, MQL5 and MetaTrader
+							</strong>
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<!-- Process -->
+				<div class="contact-process">
+
+					<h3>What happens next?</h3>
+
+					<ol class="contact-process-list">
+
+						<li>
+							<span>01</span>
+
+							<div>
+								<strong>Project review</strong>
+
+								<p>
+									We review your strategy and technical
+									requirements.
+								</p>
+							</div>
+						</li>
+
+						<li>
+							<span>02</span>
+
+							<div>
+								<strong>Plan and estimate</strong>
+
+								<p>
+									You receive an estimated timeline,
+									price, and development plan.
+								</p>
+							</div>
+						</li>
+
+						<li>
+							<span>03</span>
+
+							<div>
+								<strong>Development</strong>
+
+								<p>
+									The project is developed, tested,
+									and prepared for delivery.
+								</p>
+							</div>
+						</li>
+
+					</ol>
+
+				</div>
+
+			</aside>
+
+
+			<!-- Contact Form -->
+			<div class="contact-form-wrapper" id="project-form">
+
+				<div class="contact-form-header">
+
+					<div>
+						<span class="section-label">
+							Project Request
+						</span>
+
+						<h2>Tell us about your project</h2>
+					</div>
+
+					<span class="secure-form-badge">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M6 10V8C6 4.7 8.7 2 12 2C15.3 2 18 4.7 18 8V10"></path>
+							<path d="M5 10H19V21H5Z"></path>
+							<path d="M12 14V17"></path>
+						</svg>
+
+						Private request
+					</span>
+
+				</div>
+
+
+				<form action="{% url 'website:contact' %}" method="post" class="contact-form" novalidate>
+					{% csrf_token %}
+
+					<!-- خطاهای کلی فرم -->
+					{% if form.non_field_errors %}
+					<div class="form-error-summary" role="alert">
+						{% for error in form.non_field_errors %}
+						<p>{{ error }}</p>
+						{% endfor %}
+					</div>
+					{% endif %}
+
+
+					<!-- Full Name and Email -->
+					<div class="form-row">
+
+						<!-- Full Name -->
+						<div class="form-group">
+							<label for="{{ form.full_name.id_for_label }}">
+								Full Name
+								<span>*</span>
+							</label>
+
+							<div class="input-wrapper">
+								<span class="input-icon">
+									<svg viewBox="0 0 24 24" aria-hidden="true">
+										<circle cx="12" cy="8" r="4"></circle>
+										<path d="M4 21C4 16.6 7.6 13 12 13
+                            C16.4 13 20 16.6 20 21"></path>
+									</svg>
+								</span>
+
+								{{ form.full_name }}
+							</div>
+
+							{% for error in form.full_name.errors %}
+							<p class="field-error">
+								{{ error }}
+							</p>
+							{% endfor %}
+						</div>
+
+
+						<!-- Email -->
+						<div class="form-group">
+							<label for="{{ form.email.id_for_label }}">
+								Email Address
+								<span>*</span>
+							</label>
+
+							<div class="input-wrapper">
+								<span class="input-icon">
+									<svg viewBox="0 0 24 24" aria-hidden="true">
+										<path d="M4 5H20V19H4Z"></path>
+										<path d="M4 7L12 13L20 7"></path>
+									</svg>
+								</span>
+
+								{{ form.email }}
+							</div>
+
+							{% for error in form.email.errors %}
+							<p class="field-error">
+								{{ error }}
+							</p>
+							{% endfor %}
+						</div>
+
+					</div>
+
+
+					<!-- Project Type and Platform -->
+					<div class="form-row">
+
+						<!-- Project Type -->
+						<div class="form-group">
+							<label for="{{ form.project_type.id_for_label }}">
+								Project Type
+								<span>*</span>
+							</label>
+
+							<div class="input-wrapper select-wrapper">
+								<span class="input-icon">
+									<svg viewBox="0 0 24 24" aria-hidden="true">
+										<path d="M4 4H20V20H4Z"></path>
+										<path d="M8 9L11 12L8 15"></path>
+										<path d="M13 15H17"></path>
+									</svg>
+								</span>
+
+								{{ form.project_type }}
+							</div>
+
+							{% for error in form.project_type.errors %}
+							<p class="field-error">
+								{{ error }}
+							</p>
+							{% endfor %}
+						</div>
+
+
+						<!-- Trading Platform -->
+						<div class="form-group">
+							<label for="{{ form.platform.id_for_label }}">
+								Trading Platform
+								<span>*</span>
+							</label>
+
+							<div class="input-wrapper select-wrapper">
+								<span class="input-icon">
+									<svg viewBox="0 0 24 24" aria-hidden="true">
+										<path d="M4 4H20V20H4Z"></path>
+										<path d="M4 16H20"></path>
+										<path d="M8 12V8"></path>
+										<path d="M12 12V6"></path>
+										<path d="M16 12V9"></path>
+									</svg>
+								</span>
+
+								{{ form.platform }}
+							</div>
+
+							{% for error in form.platform.errors %}
+							<p class="field-error">
+								{{ error }}
+							</p>
+							{% endfor %}
+						</div>
+
+					</div>
+
+
+					<!-- Subject -->
+					<div class="form-group">
+						<label for="{{ form.subject.id_for_label }}">
+							Project Subject
+							<span>*</span>
+						</label>
+
+						<div class="input-wrapper">
+							<span class="input-icon">
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M4 6H20"></path>
+									<path d="M4 12H16"></path>
+									<path d="M4 18H12"></path>
+								</svg>
+							</span>
+
+							{{ form.subject }}
+						</div>
+
+						{% for error in form.subject.errors %}
+						<p class="field-error">
+							{{ error }}
+						</p>
+						{% endfor %}
+					</div>
+
+
+					<!-- Message -->
+					<div class="form-group">
+						<label for="{{ form.message.id_for_label }}">
+							Project Description
+							<span>*</span>
+						</label>
+
+						<div class="textarea-wrapper">
+							{{ form.message }}
+						</div>
+
+						<p class="field-help">
+							Please include as much information as possible.
+							You can explain your idea in simple words.
+						</p>
+
+						{% for error in form.message.errors %}
+						<p class="field-error">
+							{{ error }}
+						</p>
+						{% endfor %}
+					</div>
+
+
+					<!-- Captcha -->
+					<div class="form-group captcha-field">
+						<label for="{{ form.captcha.id_for_label }}">
+							Security Check
+							<span>*</span>
+						</label>
+
+						<div class="captcha-control">
+							{{ form.captcha }}
+						</div>
+
+						<p class="field-help">
+							Enter the characters displayed in the image.
+						</p>
+
+						{% for error in form.captcha.errors %}
+						<p class="field-error">
+							{{ error }}
+						</p>
+						{% endfor %}
+					</div>
+
+
+					<!-- Agreement -->
+					<label class="form-checkbox">
+						{{ form.agreement }}
+
+						<span class="custom-checkbox">
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M5 12L10 17L19 7"></path>
+							</svg>
+						</span>
+
+						<span>
+							I understand that project pricing and delivery
+							time depend on the final requirements.
+						</span>
+					</label>
+
+					{% for error in form.agreement.errors %}
+					<p class="field-error">
+						{{ error }}
+					</p>
+					{% endfor %}
+
+
+					<!-- Submit -->
+					<div class="form-submit-row">
+
+						<button type="submit" class="button button-primary contact-submit">
+							Submit Project Request
+
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M21 3L3 10L10 13L13 20L21 3Z"></path>
+								<path d="M10 13L15 9"></path>
+							</svg>
+						</button>
+
+						<p>
+							Your information will only be used to review
+							and respond to your project request.
+						</p>
+
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+</section>
+
+
+<!-- =====================================
+     Services Summary
+====================================== -->
+<section class="contact-services">
+	<div class="container">
+
+		<div class="contact-services-heading">
+			<span class="section-label">
+				Development Services
+			</span>
+
+			<h2>Projects you can order from FLECTA</h2>
+		</div>
+
+		<div class="contact-services-grid">
+
+			<article class="contact-service-card">
+				<span class="service-number">01</span>
+
+				<h3>Expert Advisors</h3>
+
+				<p>
+					Custom automated trading systems based on your
+					strategy and risk management rules.
+				</p>
+			</article>
+
+
+			<article class="contact-service-card">
+				<span class="service-number">02</span>
+
+				<h3>Custom Indicators</h3>
+
+				<p>
+					Technical indicators, signals, alerts, and visual
+					tools for MetaTrader charts.
+				</p>
+			</article>
+
+
+			<article class="contact-service-card">
+				<span class="service-number">03</span>
+
+				<h3>Code Debugging</h3>
+
+				<p>
+					Fixing MQL errors, improving existing code, and
+					optimizing performance.
+				</p>
+			</article>
+
+
+			<article class="contact-service-card">
+				<span class="service-number">04</span>
+
+				<h3>MQL Migration</h3>
+
+				<p>
+					Converting MQL4 projects to MQL5 with updated
+					functionality and structure.
+				</p>
+			</article>
+
+		</div>
+
+	</div>
+</section>
+
+
+<!-- =====================================
+     FAQ
+====================================== -->
+<section class="contact-faq">
+	<div class="container contact-faq-container">
+
+		<div class="contact-faq-heading">
+			<span class="section-label">
+				Frequently Asked Questions
+			</span>
+
+			<h2>Before submitting your request</h2>
+
+			<p>
+				Here are answers to some common questions about
+				custom MQL development.
+			</p>
+		</div>
+
+
+		<div class="contact-faq-list">
+
+			<details class="contact-faq-item">
+				<summary>
+					How much does an MQL project cost?
+
+					<span class="faq-toggle"></span>
+				</summary>
+
+				<p>
+					Pricing depends on project complexity, trading rules,
+					required features, and testing requirements. After
+					reviewing your request, you will receive a clear estimate.
+				</p>
+			</details>
+
+
+			<details class="contact-faq-item">
+				<summary>
+					How long does development take?
+
+					<span class="faq-toggle"></span>
+				</summary>
+
+				<p>
+					Small indicators or code fixes may take a few days.
+					More advanced Expert Advisors may require one or
+					several weeks.
+				</p>
+			</details>
+
+
+			<details class="contact-faq-item">
+				<summary>
+					Do I receive the source code?
+
+					<span class="faq-toggle"></span>
+				</summary>
+
+				<p>
+					Source code delivery can be included in the project
+					agreement. The exact delivery terms are confirmed
+					before development begins.
+				</p>
+			</details>
+
+
+			<details class="contact-faq-item">
+				<summary>
+					Can you guarantee that my strategy will be profitable?
+
+					<span class="faq-toggle"></span>
+				</summary>
+
+				<p>
+					No. FLECTA can accurately implement and test your
+					trading rules, but no Expert Advisor, indicator, or
+					strategy can guarantee profits in financial markets.
+				</p>
+			</details>
+
+		</div>
+
+	</div>
+</section>
+
+{% endblock %}
