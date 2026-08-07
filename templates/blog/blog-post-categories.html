@@ -1,15 +1,9 @@
-{% load static %}
-
-<div class="single-sidebar-widget post-category-widget">
-							<h4 class="category-title">Post Catgories</h4>
-							<ul class="cat-list">
-                                {% for name,count in categories.items %}
-								<li>
-									<a href="{% url 'blog:category' cat_name=name.name %}" class="d-flex justify-content-between">
-										<p>{{name}}</p>
-										<p>{{count}}</p>
-									</a>
-								</li>
-                                {% endfor %}
-							</ul>
-						</div>
+{% for name,count in categories.items %}
+    <a href="{% url 'blog:category' cat_name=name.name %}">
+        {{ name }}
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12H19"></path>
+            <path d="M13 6L19 12L13 18"></path>
+        </svg>
+    </a>
+{% endfor %}

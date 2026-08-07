@@ -1182,3 +1182,59 @@ select:focus-visible {
     letter-spacing: 1.2px;
     text-transform: uppercase;
 }
+
+
+.brand-image {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.site-logo {
+    
+    display: block;
+    width: auto;
+    height: 180px;
+    object-fit: contain;
+}
+
+.footer-site-logo {
+    height: 180px;
+}
+
+@media (max-width: 600px) {
+    .site-logo {
+        height: 39px;
+    }
+
+    .footer-site-logo {
+        height: 48px;
+    }
+}
+
+
+/* Logo vertical adjustment */
+.site-header .brand-image {
+    position: relative;
+    top: 10px;
+}
+
+/* =========================================
+   Footer Logo Fix
+========================================= */
+
+.site-footer .footer-brand {
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    margin-bottom: 2px;
+    overflow: visible;
+}
+
+.site-footer .footer-site-logo {
+    display: block;
+    width: 220px;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
