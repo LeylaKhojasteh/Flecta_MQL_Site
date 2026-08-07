@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 
-now= timezone.now()
+
 
 def post_view(pid):
     post = Post.objects.get(id=pid)
@@ -20,7 +20,7 @@ posts = Post.objects.filter(status=True)
         
 # Create your views here.
 def blog_view(request,**kwargs):
-    posts = Post.objects.filter(status=True)
+    posts = Post.objects.filter(status=True,published_date__lte=timezone.now()).order_by('-published_date')
     if kwargs.get('cat_name') != None:
         posts = posts.filter(category__name=kwargs['cat_name'])
     if kwargs.get('author_username') != None:
@@ -51,8 +51,9 @@ def blog_single(request,pid):
             messages.add_message(request,messages.ERROR,'your comment didnt submitted.')
 
     post_view(pid)
-    post = get_object_or_404(Post,id=pid, status=True, published_date__lte=now)
-    posts = list(Post.objects.filter(status=True))
+    post = get_object_or_404(Post,id=pid, status=True, published_date__lte=timezone.now())
+    posts = list(Post.objects.filter(status=True,published_date__lte=timezone.now()).order_by('-published_date')
+)
     if not post.login_require:
         comments = Comment.objects.filter(post=post.id,approved=True)
         form = CommentForm()

@@ -1,209 +1,409 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends "base.html" %}
 {% load blog_tags %}
+{% load static %}
+
+{% block title %}
+Blog | FLECTA
+{% endblock %}
+
+{% block meta_description %}
+Explore practical MQL4, MQL5, MetaTrader, Expert Advisor, indicator, and trading automation articles from FLECTA.
+{% endblock %}
+
+{% block body_class %}
+blog-page
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/blog-home.css' %}">
+{% endblock %}
+
 {% block content %}
 
+<!-- =====================================
+     Blog Hero
+====================================== -->
+<section class="blog-hero">
+    <div class="container blog-hero-container">
 
-	<!-- start banner Area -->
-	<section class="banner-area relative blog-home-banner" id="home">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">
-			<div class="row d-flex align-items-center justify-content-center">
-				<div class="about-content blog-header-content col-lg-12">
-					<h1 class="text-white">
-						Dude You’re Getting
-						a Telescope
-					</h1>
-					<p class="text-white">
-						There is a moment in the life of any aspiring astronomer that it is time to buy that first
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End banner Area -->
+        <div class="blog-hero-content">
+            <span class="blog-eyebrow">
+                FLECTA Knowledge Base
+            </span>
 
-	<!-- Start top-category-widget Area -->
-	<section class="top-category-widget-area pt-90 pb-90 ">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="single-cat-widget">
-						<div class="content relative">
-							<div class="overlay overlay-bg"></div>
-							<a href="#" target="_blank">
-								<div class="thumb">
-									<img class="content-image img-fluid d-block mx-auto" src="{% static 'img/blog/cat-widget1.jpg' %}"
-										alt="">
-								</div>
-								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Social life</h4>
-									<span></span>
-									<p>Enjoy your social life together</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-cat-widget">
-						<div class="content relative">
-							<div class="overlay overlay-bg"></div>
-							<a href="#" target="_blank">
-								<div class="thumb">
-									<img class="content-image img-fluid d-block mx-auto" src="{% static 'img/blog/cat-widget2.jpg' %}"
-										alt="">
-								</div>
-								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Politics</h4>
-									<span></span>
-									<p>Be a part of politics</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="single-cat-widget">
-						<div class="content relative">
-							<div class="overlay overlay-bg"></div>
-							<a href="#" target="_blank">
-								<div class="thumb">
-									<img class="content-image img-fluid d-block mx-auto" src="{% static 'img/blog/cat-widget3.jpg' %}"
-										alt="">
-								</div>
-								<div class="content-details">
-									<h4 class="content-title mx-auto text-uppercase">Food</h4>
-									<span></span>
-									<p>Let the food be finished</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End top-category-widget Area -->
+            <h1>
+                Practical insights for
+                <span>MQL developers and traders.</span>
+            </h1>
 
-	<!-- Start post-content Area -->
-	<section class="post-content-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 posts-list">
-					{% for post in posts %}
-					<div class="single-post row">
-						<div class="col-lg-3  col-md-3 meta-details">
-							<ul class="tags">
-							{% for cat in post.category.all %}
-								<a href="{% url 'blog:category' cat_name=cat.name%}">{{cat.name}}</a> {% if not forloop.last %},{% endif %}
-							{% endfor %}
-								
-								
-							</ul>
-							<div class="user-details row">
-								<p class="user-name col-lg-12 col-md-12 col-6"><a href="{% url 'blog:author' author_username=post.author.username %}">{{post.author.get_full_name}}</a> <span
-										class="lnr lnr-user"></span></p>
-								<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{post.published_date|date:"d M Y"}}</a> <span
-										class="lnr lnr-calendar-full"></span></p>
-								<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{post.counted_views}} Views</a> <span
-										class="lnr lnr-eye"></span></p>
-								<p class="comments col-lg-12 col-md-12 col-6"><a href="#">{{ post.approved_comments_count }} Comments</a> <span
-										class="lnr lnr-bubble"></span></p>
-							</div>
-						</div>
-						<div class="col-lg-9 col-md-9 ">
-							<div class="feature-img">
-								<img class="img-fluid" src="{{post.image.url}}" alt="">
-							</div>
-							<a class="posts-title" href="{% url 'blog:single' pid=post.id %}">
-								<h3>{{post.title}}</h3>
-							</a>
-							<p class="excert">
-								{{post.content|truncatewords:30|safe}}
-							</p>
-							<a href="{% url 'blog:single' pid=post.id %}" class="primary-btn">View More</a>
-						</div>
-					</div>
-					{% endfor %}
+            <p>
+                Learn how to plan, build, test, debug, and improve
+                Expert Advisors, indicators, and automated trading tools.
+            </p>
+        </div>
 
-					<nav class="blog-pagination justify-content-center d-flex">
-						<ul class="pagination">
-							{% if posts.has_previous %}
-							<li class="page-item">
-								<a href="?page={{ posts.previous_page_number }}" class="page-link" aria-label="Previous">
-									<span aria-hidden="true">
-										<span class="lnr lnr-chevron-left"></span>
-									</span>
-								</a>
-							</li>
-							{% endif %}
+        <div class="blog-hero-panel" aria-hidden="true">
+            <div class="blog-hero-panel-header">
+                <span>
+                    <i></i>
+                    knowledge.base
+                </span>
 
-							{% for i in posts.paginator.page_range %}
-							{% if posts.number == i %}
-								<li class="page-item active"><a href="?page={{i}}" class="page-link">{{i}}</a></li>
-								{% else %}
-								<li class="page-item"><a href="?page={{i}}" class="page-link">{{i}}</a></li>
-							{% endif %}
-							{% endfor %}
-							
-							{% if posts.has_next %}
-							<li class="page-item">
-								<a href="?page={{ posts.next_page_number }}" class="page-link" aria-label="Next">
-									<span aria-hidden="true">
-										<span class="lnr lnr-chevron-right"></span>
-									</span>
-								</a>
-							</li>
-							{% endif %}
-						</ul>
-					</nav>
-				</div>
-				<div class="col-lg-4 sidebar-widgets">
-					<div class="widget-wrap">
-						
-						{% include 'blog/blog-search.html' %}
-					
-						{% include 'blog/blog-writer.html' %}
+                <strong>FLECTA / MQL</strong>
+            </div>
 
-						{% latestposts %}
+            <div class="blog-hero-code">
+                <span><b>01</b> strategy.requirements = clear;</span>
+                <span><b>02</b> risk.management = enabled;</span>
+                <span class="active"><b>03</b> knowledge.share();</span>
+                <span><b>04</b> build.test.improve();</span>
+            </div>
 
-						{% include 'blog/blog-ads.html' %}
-						
-						{% postcategories %}
+            <div class="blog-hero-panel-footer">
+                <span>{{ posts.paginator.count }} published articles</span>
+                <span>Updated regularly</span>
+            </div>
+        </div>
 
-						<div class="single-sidebar-widget newsletter-widget">
-							<h4 class="newsletter-title">Newsletter</h4>
-							<p>
-								Here, I focus on a range of items and features that we use in life without
-								giving them a second thought.
-							</p>
-							<div class="form-group d-flex flex-row">
-								<div class="col-autos">
-									<div class="input-group">
-										<div class="input-group-prepend">
-											<div class="input-group-text"><i class="fa fa-envelope"
-													aria-hidden="true"></i>
-											</div>
-										</div>
-										<input type="text" class="form-control" id="inlineFormInputGroup"
-											placeholder="Enter email" onfocus="this.placeholder = ''"
-											onblur="this.placeholder = 'Enter email'">
-									</div>
-								</div>
-								<a href="#" class="bbtns">Subcribe</a>
-							</div>
-							<p class="text-bottom">
-								You can unsubscribe at any time
-							</p>
-						</div>
-						
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End post-content Area -->
+    </div>
+</section>
+
+
+<!-- =====================================
+     Blog Main Layout
+====================================== -->
+<section class="blog-main">
+    <div class="container blog-layout">
+
+        <!-- Posts Column -->
+        <div class="blog-content-column">
+
+            <div class="blog-content-header">
+                <div>
+                    <span class="section-label">Latest Articles</span>
+
+                    <h2>
+                        {% if active_filter_title %}
+                            {{ active_filter_title }}
+                        {% else %}
+                            Explore the latest posts
+                        {% endif %}
+                    </h2>
+                </div>
+
+                <span class="blog-results-count">
+                    {{ posts.paginator.count }} article{{ posts.paginator.count|pluralize }}
+                </span>
+            </div>
+
+            {% if posts %}
+                <div class="blog-post-list">
+
+                    {% for post in posts %}
+                        <article class="blog-post-card">
+
+                            <a
+                                href="{% url 'blog:single' pid=post.id %}"
+                                class="blog-post-cover"
+                                aria-label="Read {{ post.title }}"
+                            >
+                                {% if post.image %}
+                                    <img
+                                        src="{{ post.image.url }}"
+                                        alt="{{ post.title }}"
+                                        loading="lazy"
+                                    >
+                                {% else %}
+                                    <div class="blog-cover-placeholder" aria-hidden="true">
+                                        <div class="blog-cover-grid"></div>
+
+                                        <div class="blog-cover-terminal">
+                                            <span>FLECTA_ARTICLE.mq5</span>
+                                            <i></i>
+                                            <i></i>
+                                            <i class="highlight"></i>
+                                            <i></i>
+                                        </div>
+
+                                        <span class="blog-cover-mark">
+                                            MQL
+                                        </span>
+                                    </div>
+                                {% endif %}
+                            </a>
+
+                            <div class="blog-post-body">
+
+                                <div class="blog-post-taxonomy">
+                                    {% for category in post.category.all|slice:":2" %}
+                                        <a href="{% url 'blog:category' cat_name=category.name %}">
+                                            {{ category.name }}
+                                        </a>
+                                    {% empty %}
+                                        <span>MQL Development</span>
+                                    {% endfor %}
+                                </div>
+
+                                <h3>
+                                    <a href="{% url 'blog:single' pid=post.id %}">
+                                        {{ post.title }}
+                                    </a>
+                                </h3>
+
+                                <p class="blog-post-excerpt">
+                                    {{ post.content|striptags|truncatewords:28 }}
+                                </p>
+
+                                <div class="blog-post-footer">
+                                    <div class="blog-post-meta">
+                                        <span>
+                                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                <circle cx="12" cy="8" r="4"></circle>
+                                                <path d="M4 21C4 16.6 7.6 13 12 13C16.4 13 20 16.6 20 21"></path>
+                                            </svg>
+
+                                            {{ post.author.get_full_name|default:post.author.username }}
+                                        </span>
+
+                                        <span>
+                                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M5 4H19V20H5Z"></path>
+                                                <path d="M8 2V6"></path>
+                                                <path d="M16 2V6"></path>
+                                                <path d="M5 9H19"></path>
+                                            </svg>
+
+                                            {{ post.published_date|date:"M d, Y" }}
+                                        </span>
+
+                                        <span>
+                                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M2 12C4.5 7.5 7.8 5 12 5C16.2 5 19.5 7.5 22 12C19.5 16.5 16.2 19 12 19C7.8 19 4.5 16.5 2 12Z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+
+                                            {{ post.counted_views }} views
+                                        </span>
+                                    </div>
+
+                                    <a
+                                        href="{% url 'blog:single' pid=post.id %}"
+                                        class="blog-read-link"
+                                    >
+                                        Read article
+
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M5 12H19"></path>
+                                            <path d="M13 6L19 12L13 18"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </article>
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- Pagination -->
+                {% if posts.paginator.num_pages > 1 %}
+                    <nav class="blog-pagination" aria-label="Blog pagination">
+
+                        {% if posts.has_previous %}
+                            <a
+                                href="?page={{ posts.previous_page_number }}{% if request.GET.s %}&s={{ request.GET.s|urlencode }}{% endif %}"
+                                class="pagination-direction"
+                                aria-label="Previous page"
+                            >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M19 12H5"></path>
+                                    <path d="M11 6L5 12L11 18"></path>
+                                </svg>
+
+                                Previous
+                            </a>
+                        {% else %}
+                            <span class="pagination-direction is-disabled">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M19 12H5"></path>
+                                    <path d="M11 6L5 12L11 18"></path>
+                                </svg>
+
+                                Previous
+                            </span>
+                        {% endif %}
+
+                        <div class="pagination-numbers">
+                            {% for page_number in posts.paginator.page_range %}
+                                {% if page_number == posts.number %}
+                                    <span class="pagination-number is-current" aria-current="page">
+                                        {{ page_number }}
+                                    </span>
+                                {% else %}
+                                    <a
+                                        href="?page={{ page_number }}{% if request.GET.s %}&s={{ request.GET.s|urlencode }}{% endif %}"
+                                        class="pagination-number"
+                                    >
+                                        {{ page_number }}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        {% if posts.has_next %}
+                            <a
+                                href="?page={{ posts.next_page_number }}{% if request.GET.s %}&s={{ request.GET.s|urlencode }}{% endif %}"
+                                class="pagination-direction"
+                                aria-label="Next page"
+                            >
+                                Next
+
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M5 12H19"></path>
+                                    <path d="M13 6L19 12L13 18"></path>
+                                </svg>
+                            </a>
+                        {% else %}
+                            <span class="pagination-direction is-disabled">
+                                Next
+
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M5 12H19"></path>
+                                    <path d="M13 6L19 12L13 18"></path>
+                                </svg>
+                            </span>
+                        {% endif %}
+
+                    </nav>
+                {% endif %}
+
+            {% else %}
+                <div class="blog-empty-state">
+                    <span class="blog-empty-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 4H19V20H5Z"></path>
+                            <path d="M8 8H16"></path>
+                            <path d="M8 12H16"></path>
+                            <path d="M8 16H12"></path>
+                        </svg>
+                    </span>
+
+                    <h3>No articles found</h3>
+
+                    <p>
+                        There are no published posts for this filter yet.
+                    </p>
+
+                    <a href="{% url 'blog:index' %}" class="button button-primary">
+                        View all articles
+                    </a>
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- Sidebar -->
+        <aside class="blog-sidebar">
+
+            <!-- Search -->
+            <section class="sidebar-widget sidebar-search-widget">
+                <div class="sidebar-widget-heading">
+                    <span>Search</span>
+                    <small>Find an article</small>
+                </div>
+
+                <form
+                    action="{% url 'blog:search' %}"
+                    method="get"
+                    class="blog-search-form"
+                >
+                    <label class="sr-only" for="blog-search-input">
+                        Search blog
+                    </label>
+
+                    <input
+                        id="blog-search-input"
+                        type="search"
+                        name="s"
+                        value="{{ request.GET.s|default:'' }}"
+                        placeholder="Search MQL articles..."
+                    >
+
+                    <button type="submit" aria-label="Search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <path d="M16 16L21 21"></path>
+                        </svg>
+                    </button>
+                </form>
+            </section>
+
+
+            <!-- Latest Posts -->
+            <section class="sidebar-widget">
+                <div class="sidebar-widget-heading">
+                    <span>Latest Posts</span>
+                    <small>Recently published</small>
+                </div>
+
+                <div class="sidebar-latest-list">
+                    {% latestposts %}
+                    
+                </div>
+            </section>
+
+
+            <!-- Categories -->
+            <section class="sidebar-widget">
+                <div class="sidebar-widget-heading">
+                    <span>Categories</span>
+                    <small>Browse by topic</small>
+                    
+                </div>
+
+                <ul class="sidebar-category-list">
+                    {% postcategories %}
+                </ul>
+            </section>
+
+
+            <!-- Tags -->
+            <section class="sidebar-widget">
+                <div class="sidebar-widget-heading">
+                    <span>Popular Tags</span>
+                    <small>Explore related posts</small>
+                </div>
+
+                <div class="sidebar-tag-cloud">
+                    {% include 'blog/blog-tags.html' %}
+                </div>
+            </section>
+
+
+            <!-- CTA -->
+            <section class="sidebar-cta">
+                <span>Have an MQL project?</span>
+
+                <h2>
+                    Turn your trading idea into a working tool.
+                </h2>
+
+                <a href="/contact/" class="button button-primary">
+                    Order a Project
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12H19"></path>
+                        <path d="M13 6L19 12L13 18"></path>
+                    </svg>
+                </a>
+            </section>
+
+        </aside>
+
+    </div>
+</section>
 
 {% endblock %}

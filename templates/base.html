@@ -2,18 +2,14 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="{% block meta_description %}Professional MQL4 and MQL5 development, custom Expert Advisors, indicators, and automated trading systems.{% endblock %}"
-    >
+    <meta name="description"
+        content="{% block meta_description %}Professional MQL4 and MQL5 development, custom Expert Advisors, indicators, and automated trading systems.{% endblock %}">
 
     <meta name="theme-color" content="#07130c">
 
@@ -42,16 +38,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Main stylesheet -->
-    <link
-        rel="stylesheet"
-        href="{% static 'css/base.css' %}"
-    >
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
     {% block extra_css %}{% endblock %}
 </head>
@@ -78,7 +69,7 @@
         <div class="container header-container">
 
             <!-- Logo -->
-            <a
+            <!-- <a
                 href="/"
                 class="brand"
                 aria-label="FLECTA home page"
@@ -141,13 +132,15 @@
                     <strong>FLECTA</strong>
                     <small>MQL</small>
                 </span>
+            </a> -->
+
+
+            <a href="/" class="brand brand-image" aria-label="FLECTA home page">
+                <img src="{% static 'img/logo.png' %}" alt="FLECTA MQL" class="site-logo">
             </a>
 
             <!-- Desktop Navigation -->
-            <nav
-                class="desktop-navigation"
-                aria-label="Main navigation"
-            >
+            <nav class="desktop-navigation" aria-label="Main navigation">
                 <a href="/" class="navigation-link">
                     Home
                 </a>
@@ -169,18 +162,9 @@
             <div class="header-actions">
 
                 <!-- Theme Button -->
-                <button
-                    type="button"
-                    class="icon-button theme-toggle"
-                    id="theme-toggle"
-                    aria-label="Change display theme"
-                    title="Change display theme"
-                >
-                    <svg
-                        class="theme-icon theme-icon-sun"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                    >
+                <button type="button" class="icon-button theme-toggle" id="theme-toggle"
+                    aria-label="Change display theme" title="Change display theme">
+                    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="12" cy="12" r="4"></circle>
                         <path d="M12 2V4"></path>
                         <path d="M12 20V22"></path>
@@ -192,43 +176,25 @@
                         <path d="M17.66 6.34L19.07 4.93"></path>
                     </svg>
 
-                    <svg
-                        class="theme-icon theme-icon-moon"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                    >
-                        <path
-                            d="M21 12.8A9 9 0 1 1 11.2 3
-                            7 7 0 0 0 21 12.8Z"
-                        ></path>
+                    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M21 12.8A9 9 0 1 1 11.2 3
+                            7 7 0 0 0 21 12.8Z"></path>
                     </svg>
                 </button>
 
                 <!-- Desktop CTA -->
-                <a
-                    href="/contact/"
-                    class="button button-primary header-cta"
-                >
+                <a href="/contact/" class="button button-primary header-cta">
                     <span>Order a Project</span>
 
-                    <svg
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                    >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M5 12H19"></path>
                         <path d="M13 6L19 12L13 18"></path>
                     </svg>
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button
-                    type="button"
-                    class="mobile-menu-button"
-                    id="mobile-menu-button"
-                    aria-label="Open mobile menu"
-                    aria-controls="mobile-navigation"
-                    aria-expanded="false"
-                >
+                <button type="button" class="mobile-menu-button" id="mobile-menu-button" aria-label="Open mobile menu"
+                    aria-controls="mobile-navigation" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -239,15 +205,8 @@
         </div>
 
         <!-- Mobile Navigation -->
-        <div
-            class="mobile-navigation"
-            id="mobile-navigation"
-            aria-hidden="true"
-        >
-            <nav
-                class="mobile-navigation-inner container"
-                aria-label="Mobile navigation"
-            >
+        <div class="mobile-navigation" id="mobile-navigation" aria-hidden="true">
+            <nav class="mobile-navigation-inner container" aria-label="Mobile navigation">
                 <a href="/" class="mobile-navigation-link">
                     <span class="mobile-link-icon">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -296,46 +255,29 @@
                     <span>Contact</span>
                 </a>
 
-                <a
-                    href="/contact/"
-                    class="button button-primary mobile-navigation-cta"
-                >
+                <a href="/contact/" class="button button-primary mobile-navigation-cta">
                     Order a Project
                 </a>
             </nav>
         </div>
 
-        <div
-            class="mobile-navigation-overlay"
-            id="mobile-navigation-overlay"
-            aria-hidden="true"
-        ></div>
+        <div class="mobile-navigation-overlay" id="mobile-navigation-overlay" aria-hidden="true"></div>
 
     </header>
 
     <!-- Django Messages -->
     {% if messages %}
-        <section
-            class="messages-container container"
-            aria-label="System messages"
-        >
-            {% for message in messages %}
-                <div
-                    class="site-message site-message-{{ message.tags|default:'info' }}"
-                    role="alert"
-                >
-                    <span>{{ message }}</span>
+    <section class="messages-container container" aria-label="System messages">
+        {% for message in messages %}
+        <div class="site-message site-message-{{ message.tags|default:'info' }}" role="alert">
+            <span>{{ message }}</span>
 
-                    <button
-                        type="button"
-                        class="message-close"
-                        aria-label="Close message"
-                    >
-                        ×
-                    </button>
-                </div>
-            {% endfor %}
-        </section>
+            <button type="button" class="message-close" aria-label="Close message">
+                ×
+            </button>
+        </div>
+        {% endfor %}
+    </section>
     {% endif %}
 
     <!-- =========================
@@ -360,62 +302,22 @@
                 <!-- Brand Column -->
                 <div class="footer-brand-column">
 
-                    <a
-                        href="/"
-                        class="brand footer-brand"
-                        aria-label="FLECTA home page"
-                    >
+                    <!-- <a href="/" class="brand footer-brand" aria-label="FLECTA home page">
                         <span class="brand-logo" aria-hidden="true">
-                            <svg
-                                viewBox="0 0 48 48"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect
-                                    x="4"
-                                    y="4"
-                                    width="40"
-                                    height="40"
-                                    rx="13"
-                                    class="logo-background"
-                                />
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="4" y="4" width="40" height="40" rx="13" class="logo-background" />
 
-                                <path
-                                    d="M14 30L20 24L25 28L35 17"
-                                    class="logo-chart"
-                                />
+                                <path d="M14 30L20 24L25 28L35 17" class="logo-chart" />
 
-                                <path
-                                    d="M31 17H35V21"
-                                    class="logo-chart"
-                                />
+                                <path d="M31 17H35V21" class="logo-chart" />
 
-                                <path
-                                    d="M15 16V25"
-                                    class="logo-candle"
-                                />
+                                <path d="M15 16V25" class="logo-candle" />
 
-                                <rect
-                                    x="12.5"
-                                    y="18"
-                                    width="5"
-                                    height="5"
-                                    rx="1"
-                                    class="logo-candle-body"
-                                />
+                                <rect x="12.5" y="18" width="5" height="5" rx="1" class="logo-candle-body" />
 
-                                <path
-                                    d="M23 14V22"
-                                    class="logo-candle"
-                                />
+                                <path d="M23 14V22" class="logo-candle" />
 
-                                <rect
-                                    x="20.5"
-                                    y="16"
-                                    width="5"
-                                    height="4"
-                                    rx="1"
-                                    class="logo-candle-body"
-                                />
+                                <rect x="20.5" y="16" width="5" height="4" rx="1" class="logo-candle-body" />
                             </svg>
                         </span>
 
@@ -423,6 +325,11 @@
                             <strong>FLECTA</strong>
                             <small>MQL</small>
                         </span>
+                    </a> -->
+
+                    <a href="/" class="brand footer-brand brand-image">
+                        <img src="{% static 'img/logo.png' %}" alt="FLECTA MQL"
+                            class="site-logo footer-site-logo">
                     </a>
 
                     <p class="footer-description">
@@ -438,12 +345,8 @@
 
                     <div class="social-links">
 
-                        <a
-                            href="https://t.me/TheHayanVenera"
-                            class="social-link"
-                            aria-label="Telegram"
-                            title="Telegram"
-                        >
+                        <a href="https://t.me/TheHayanVenera" class="social-link" aria-label="Telegram"
+                            title="Telegram">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M21 3L3 10L10 13L13 20L21 3Z"></path>
                                 <path d="M10 13L15 9"></path>
@@ -464,15 +367,10 @@
                             </svg>
                         </a> -->
 
-                        <a
-                            href="https://github.com/LeylaKhojasteh"
-                            class="social-link"
-                            aria-label="GitHub"
-                            title="GitHub"
-                        >
+                        <a href="https://github.com/LeylaKhojasteh" class="social-link" aria-label="GitHub"
+                            title="GitHub">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M15 22V18C15.1 16.8 14.7 15.7
+                                <path d="M15 22V18C15.1 16.8 14.7 15.7
                                     14 15C17 14.7 20 13.5 20 9
                                     20 7.7 19.5 6.5 18.6 5.6
                                     19 4.5 19 3.3 18.5 2.2
@@ -482,8 +380,7 @@
                                     4 3.3 4 4.5 4.4 5.6
                                     3.5 6.5 3 7.7 3 9
                                     3 13.5 6 14.7 9 15
-                                    8.3 15.7 7.9 16.8 8 18V22"
-                                ></path>
+                                    8.3 15.7 7.9 16.8 8 18V22"></path>
                             </svg>
                         </a>
 
@@ -599,7 +496,8 @@
 
                             <div>
                                 <small>Specialization</small>
-                                <span>MQL EA advisors, Indicators, Scripts, Pinescript and any AlgoTrading solutions</span>
+                                <span>MQL EA advisors, Indicators, Scripts, Pinescript and any AlgoTrading
+                                    solutions</span>
                             </div>
                         </li>
 
@@ -648,13 +546,7 @@
     </footer>
 
     <!-- Back To Top -->
-    <button
-        type="button"
-        class="back-to-top"
-        id="back-to-top"
-        aria-label="Back to top"
-        title="Back to top"
-    >
+    <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M6 15L12 9L18 15"></path>
         </svg>
@@ -665,4 +557,5 @@
 
     {% block extra_js %}{% endblock %}
 </body>
+
 </html>

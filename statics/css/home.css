@@ -658,19 +658,97 @@
 
 .service-card-featured {
     display: grid;
-    min-height: 390px;
+    height: 400px;
     grid-column: span 2;
     padding: 28px;
 }
 
 .service-card-ea {
-    grid-template-columns: minmax(0, 1fr) minmax(190px, 0.62fr);
-    gap: 25px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    gap: 15px;
+
     background:
-        radial-gradient(circle at 85% 18%, rgba(34, 197, 94, 0.13), transparent 35%),
+        radial-gradient(
+            circle at 80% 12%,
+            rgba(34, 197, 94, 0.12),
+            transparent 35%
+        ),
         var(--surface);
 }
 
+/* متن EA تمام عرض کارت */
+.service-card-ea .service-card-copy {
+    align-self: center;
+    max-width: 480px;
+    padding-top: 37px;
+}
+
+/* توضیح خیلی کش نیاد */
+.service-card-ea .service-card-copy > p {
+    max-width: 480px;
+}
+
+/* سه قابلیت */
+.service-card-ea .service-points {
+    margin-top: 16px;
+}
+
+/* پنل وضعیت پایین کارت */
+.service-card-ea .service-mini-terminal {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+
+    align-self: end;
+
+    margin-top: 3px;
+    padding: 9px;
+
+    border: 1px solid rgba(74, 222, 128, 0.1);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 197, 94, 0.035),
+            transparent
+        ),
+        #08130c;
+}
+
+/* هر status تبدیل به یک mini panel */
+.service-card-ea .service-terminal-row {
+    display: flex;
+    min-height: 55px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3px;
+
+    padding: 8px 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.015);
+}
+
+/* خط‌های قبلی بین ردیف‌ها حذف شوند */
+.service-card-ea .service-terminal-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.service-card-ea .service-terminal-row span {
+    color: var(--text-muted);
+    font-size: 0.58rem;
+}
+
+.service-card-ea .service-terminal-row strong {
+    color: var(--primary-light);
+    font-size: 0.62rem;
+    font-weight: 800;
+}
 .service-card-indicator {
     grid-template-rows: auto 1fr auto;
     background:
@@ -679,7 +757,7 @@
 }
 
 .service-card-compact {
-    min-height: 230px;
+    min-height: 150px;
     padding: 24px;
 }
 
