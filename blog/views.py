@@ -8,16 +8,6 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 
 
-
-def post_view(pid):
-    post = Post.objects.get(id=pid)
-    post.counted_views+=1
-    post.save()
-
-posts = Post.objects.filter(status=True)   
-
-
-        
 # Create your views here.
 def blog_view(request,**kwargs):
     posts = Post.objects.filter(status=True,published_date__lte=timezone.now()).order_by('-published_date')
@@ -42,34 +32,40 @@ def blog_view(request,**kwargs):
     
 
 def blog_single(request,pid):
+    post = get_object_or_404(Post,id=pid, status=True, published_date__lte=timezone.now())
+    if post.login_require and not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('accounts:login'))
+
+    if request.method == "GET":
+        post.counted_views += 1
+        post.save(update_fields=['counted_views'])
+
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            form.save()
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
             messages.add_message(request, messages.SUCCESS, 'Your comment has submitted successfully!')
+            return redirect('blog:single', pid=post.id)
         else:
-            messages.add_message(request,messages.ERROR,'your comment didnt submitted.')
-
-    post_view(pid)
-    post = get_object_or_404(Post,id=pid, status=True, published_date__lte=timezone.now())
-    posts = list(Post.objects.filter(status=True,published_date__lte=timezone.now()).order_by('-published_date')
-)
-    if not post.login_require:
-        comments = Comment.objects.filter(post=post.id,approved=True)
-        form = CommentForm()
-        prv_post = None
-        nxt_post = None
-        index = posts.index(post)
-        if (index>0):
-            prv_post = posts[index-1]
-        if(index < len(posts)-1):
-            nxt_post = posts[index+1]
-
-        context = {'post':post,'prv':prv_post,'nxt':nxt_post,'comments':comments,'form':form}
-
-        return render(request,'blog/blog-single.html',context)
+            messages.add_message(request,messages.ERROR,'Your comment was not submitted. Please check the form.')
     else:
-        return HttpResponseRedirect(reverse('accounts:login'))
+        form = CommentForm()
+
+    posts = list(Post.objects.filter(status=True,published_date__lte=timezone.now()).order_by('-published_date'))
+    comments = Comment.objects.filter(post=post.id,approved=True)
+    prv_post = None
+    nxt_post = None
+    index = posts.index(post)
+    if (index>0):
+        prv_post = posts[index-1]
+    if(index < len(posts)-1):
+        nxt_post = posts[index+1]
+
+    context = {'post':post,'prv':prv_post,'nxt':nxt_post,'comments':comments,'form':form}
+
+    return render(request,'blog/blog-single.html',context)
 
 def blog_category(request,cat_name):
     posts = Post.objects.filter(status=True)

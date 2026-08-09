@@ -15,12 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import BlogSitemap
 from website.sitemaps import StaticViewSitemap
+from website.views import coming_soon_view
 import debug_toolbar
 
 sitemaps = {
@@ -29,6 +30,10 @@ sitemaps = {
 }
 
 urlpatterns = [
+    # Temporary launch page: remove these routes when the website is ready.
+    path('', coming_soon_view, name='coming-soon'),
+    path('<path:url>', coming_soon_view),
+
     path('admin/', admin.site.urls),
     # path ('url address', 'views')
     path('',include('website.urls')),

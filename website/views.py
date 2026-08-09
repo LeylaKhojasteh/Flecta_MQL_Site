@@ -1,12 +1,16 @@
 from dataclasses import fields
 
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from website.forms import NameForm,ContactForm, NewsletterForm
 from django.contrib import messages
 
 def home_view(request):
     return render(request,'website/home.html')
+
+
+def coming_soon_view(request, url=None):
+    return render(request, 'website/coming-soon.html')
 
 
 def about_view(request):
@@ -66,9 +70,8 @@ def newsletter_view(request):
         form = NewsletterForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/')
-    else:
-        return HttpResponseRedirect('/')
+
+    return HttpResponseRedirect('/')
 
 
 def test_view(request):

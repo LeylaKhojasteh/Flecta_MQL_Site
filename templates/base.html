@@ -11,6 +11,8 @@
     <meta name="description"
         content="{% block meta_description %}Professional MQL4 and MQL5 development, custom Expert Advisors, indicators, and automated trading systems.{% endblock %}">
 
+    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+
     <meta name="theme-color" content="#07130c">
 
     <title>
@@ -160,7 +162,78 @@
 
             <!-- Header Actions -->
             <div class="header-actions">
+                <!-- =====================================
+     Authentication
+====================================== -->
+                <div class="header-auth">
 
+                    {% if request.user.is_authenticated %}
+
+                    <details class="account-menu">
+
+                        <summary class="account-trigger">
+
+                            <span class="account-avatar">
+                                {{ request.user.username|first|upper }}
+                            </span>
+
+                            <span class="account-info">
+                                <small>Signed in as</small>
+                                <strong>{{ request.user.username }}</strong>
+                            </span>
+
+                            <svg class="account-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M7 9L12 14L17 9"></path>
+                            </svg>
+
+                        </summary>
+
+
+                        <div class="account-dropdown">
+
+                            <div class="account-dropdown-header">
+                                <span class="account-avatar account-avatar-large">
+                                    {{ request.user.username|first|upper }}
+                                </span>
+
+                                <div>
+                                    <small>Account</small>
+                                    <strong>{{ request.user.username }}</strong>
+                                </div>
+                            </div>
+
+
+                            <div class="account-dropdown-divider"></div>
+
+
+                            <a href="{% url 'accounts:logout' %}" class="account-dropdown-link account-logout">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M10 4H5V20H10"></path>
+                                    <path d="M14 8L18 12L14 16"></path>
+                                    <path d="M18 12H9"></path>
+                                </svg>
+
+                                <span>Logout</span>
+                            </a>
+
+                        </div>
+
+                    </details>
+
+
+                    {% else %}
+
+                    <a href="{% url 'accounts:login' %}" class="auth-login-link">
+                        Login
+                    </a>
+
+                    <a href="{% url 'accounts:signup' %}" class="auth-signup-button">
+                        Sign Up
+                    </a>
+
+                    {% endif %}
+
+                </div>
                 <!-- Theme Button -->
                 <button type="button" class="icon-button theme-toggle" id="theme-toggle"
                     aria-label="Change display theme" title="Change display theme">
@@ -254,6 +327,52 @@
 
                     <span>Contact</span>
                 </a>
+                <div class="mobile-authentication">
+
+                    {% if request.user.is_authenticated %}
+
+                    <div class="mobile-user-card">
+
+                        <span class="account-avatar">
+                            {{ request.user.username|first|upper }}
+                        </span>
+
+                        <div>
+                            <small>Signed in as</small>
+                            <strong>{{ request.user.username }}</strong>
+                        </div>
+
+                    </div>
+
+
+                    <a href="{% url 'accounts:logout' %}" class="mobile-auth-link mobile-logout-link">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M10 4H5V20H10"></path>
+                            <path d="M14 8L18 12L14 16"></path>
+                            <path d="M18 12H9"></path>
+                        </svg>
+
+                        Logout
+                    </a>
+
+
+                    {% else %}
+
+                    <div class="mobile-auth-buttons">
+
+                        <a href="{% url 'accounts:login' %}" class="mobile-auth-login">
+                            Login
+                        </a>
+
+                        <a href="{% url 'accounts:signup' %}" class="button button-primary">
+                            Sign Up
+                        </a>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
 
                 <a href="/contact/" class="button button-primary mobile-navigation-cta">
                     Order a Project
@@ -328,8 +447,7 @@
                     </a> -->
 
                     <a href="/" class="brand footer-brand brand-image">
-                        <img src="{% static 'img/logo.png' %}" alt="FLECTA MQL"
-                            class="site-logo footer-site-logo">
+                        <img src="{% static 'img/logo.png' %}" alt="FLECTA MQL" class="site-logo footer-site-logo">
                     </a>
 
                     <p class="footer-description">
