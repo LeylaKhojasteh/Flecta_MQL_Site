@@ -17,11 +17,9 @@ class SignupForm(UserCreationForm):
         email = self.cleaned_data['email']
 
         if User.objects.filter(email__iexact=email).exists():
-            raise forms.ValidationError('این ایمیل قبلاً ثبت شده است.')
+            raise forms.ValidationError('This email address is already registered.')
 
         return email
-    
-    
 
 
 class CustomAuthenticationForm(AuthenticationForm):
@@ -38,7 +36,7 @@ class CustomAuthenticationForm(AuthenticationForm):
             'class': 'form-control',
             'placeholder': 'Password'
         }))
-    
+
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
@@ -53,7 +51,7 @@ class CustomAuthenticationForm(AuthenticationForm):
             except User.DoesNotExist:
                 raise forms.ValidationError('email or password is incorrect.')
 
-        self.user_cache = authenticate( username=username, password=password)
+        self.user_cache = authenticate(username=username, password=password)
 
         if self.user_cache is None:
             raise forms.ValidationError('username or password is incorrect.')

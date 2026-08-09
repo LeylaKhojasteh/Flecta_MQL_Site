@@ -20,7 +20,9 @@ def login_view(request):
                 if user is not None:
                     login(request,user)
                     return redirect('/')
-        form = CustomAuthenticationForm(request)    
+        else:
+            form = CustomAuthenticationForm(request)
+
         context = {'form': form}
         return render(request,'accounts/login.html',context)
     else:
@@ -42,8 +44,9 @@ def signup_view(request):
             if form.is_valid():
                 form.save()
                 return redirect('/')
-                
-        form = SignupForm()
+        else:
+            form = SignupForm()
+
         context = {'form': form}
         return render(request,'accounts/signup.html', context)
     else:
