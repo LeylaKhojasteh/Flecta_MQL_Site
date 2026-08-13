@@ -31,8 +31,8 @@ sitemaps = {
 
 urlpatterns = [
     # Temporary launch page: remove these routes when the website is ready.
-    path('', coming_soon_view, name='coming-soon'),
-    path('<path:url>', coming_soon_view),
+    # path('', coming_soon_view, name='coming-soon'),
+    # path('<path:url>', coming_soon_view),
 
     path('admin/', admin.site.urls),
     # path ('url address', 'views')

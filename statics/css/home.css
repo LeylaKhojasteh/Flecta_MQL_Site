@@ -1390,183 +1390,9 @@
     transform: translateY(-6px);
 }
 
-.blog-preview-cover {
-    position: relative;
-    min-height: 205px;
-    padding: 18px;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border);
-    background:
-        radial-gradient(circle at 18% 18%, rgba(74, 222, 128, 0.17), transparent 30%),
-        linear-gradient(145deg, #08140c, #102619);
-}
 
-.blog-preview-cover::before {
-    position: absolute;
-    inset: 0;
-    opacity: 0.18;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-    background-size: 27px 27px;
-    content: "";
-}
 
-.blog-cover-topline {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.blog-cover-topline span {
-    display: inline-flex;
-    padding: 6px 10px;
-    border: 1px solid rgba(74, 222, 128, 0.2);
-    border-radius: var(--radius-round);
-    background: rgba(74, 222, 128, 0.08);
-    color: #4ade80;
-    font-size: 0.64rem;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-}
-
-.blog-cover-topline small {
-    color: rgba(255, 255, 255, 0.36);
-    font-family: monospace;
-    font-size: 0.65rem;
-}
-
-.blog-code-visual {
-    position: absolute;
-    right: 18px;
-    bottom: 18px;
-    left: 18px;
-    z-index: 2;
-    display: flex;
-    min-height: 112px;
-    justify-content: center;
-    flex-direction: column;
-    gap: 8px;
-    padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 15px;
-    background: rgba(3, 12, 7, 0.72);
-    box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
-}
-
-.blog-code-visual i {
-    display: block;
-    padding: 4px 7px;
-    color: #9eb0a4;
-    font-family: monospace;
-    font-size: 0.62rem;
-    font-style: normal;
-}
-
-.blog-code-visual i.active {
-    border-left: 2px solid #22c55e;
-    background: rgba(34, 197, 94, 0.08);
-    color: #d5e3d9;
-}
-
-.blog-code-visual b {
-    color: #c084fc;
-    font-weight: 500;
-}
-
-.blog-code-visual em {
-    color: #4ade80;
-    font-style: normal;
-}
-
-.blog-flow-visual {
-    position: absolute;
-    right: 20px;
-    bottom: 45px;
-    left: 20px;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-}
-
-.blog-flow-visual span {
-    display: inline-flex;
-    min-width: 70px;
-    min-height: 52px;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    border: 1px solid rgba(74, 222, 128, 0.18);
-    border-radius: 13px;
-    background: rgba(3, 12, 7, 0.68);
-    color: #b9c9be;
-    font-family: monospace;
-    font-size: 0.6rem;
-}
-
-.blog-flow-visual i {
-    width: 25px;
-    height: 1px;
-    background: rgba(74, 222, 128, 0.45);
-}
-
-.blog-refactor-visual {
-    position: absolute;
-    right: 22px;
-    bottom: 32px;
-    left: 22px;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 13px;
-    align-items: center;
-}
-
-.blog-refactor-visual > div {
-    display: flex;
-    min-height: 112px;
-    justify-content: center;
-    flex-direction: column;
-    gap: 8px;
-    padding: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 14px;
-    background: rgba(3, 12, 7, 0.68);
-}
-
-.blog-refactor-visual small {
-    color: #809187;
-    font-family: monospace;
-    font-size: 0.56rem;
-}
-
-.blog-refactor-visual i {
-    display: block;
-    height: 5px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.blog-refactor-visual > div:first-child i:nth-of-type(2) { width: 70%; }
-.blog-refactor-visual > div:first-child i:nth-of-type(3) { width: 86%; }
-.blog-refactor-visual > div:first-child i:nth-of-type(4) { width: 54%; }
-
-.blog-refactor-visual > div:last-child i {
-    background: rgba(74, 222, 128, 0.25);
-}
-
-.blog-refactor-visual > div:last-child i:nth-of-type(2) { width: 78%; }
-.blog-refactor-visual > div:last-child i:nth-of-type(3) { width: 60%; }
-
-.blog-refactor-visual > span {
-    color: #4ade80;
-    font-size: 1.1rem;
-}
 
 .blog-preview-content {
     padding: 22px;
@@ -2090,4 +1916,210 @@
     .blog-preview-card {
         transform: none !important;
     }
+}
+
+.blog-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.blog-preview-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: linear-gradient(
+        180deg,
+        rgba(7, 19, 12, 0.9) 0%,
+        rgba(5, 16, 10, 0.98) 100%
+    );
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-preview-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(61, 220, 132, 0.28);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+.blog-preview-image {
+    display: block;
+    width: 100%;
+    height: 245px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.blog-preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.blog-preview-card:hover .blog-preview-image img {
+    transform: scale(1.04);
+}
+
+.blog-preview-content {
+    padding: 22px 22px 24px;
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.blog-preview-content h3 {
+    margin: 0 0 14px;
+    font-size: 1.35rem;
+    line-height: 1.4;
+}
+
+.blog-preview-content h3 a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.blog-preview-content h3 a:hover {
+    color: var(--primary);
+}
+
+.blog-preview-content p {
+    margin: 0 0 18px;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    font-size: 0.97rem;
+}
+
+.blog-preview-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.blog-preview-link:hover {
+    opacity: 0.9;
+}
+
+
+.blog-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+.blog-preview-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: linear-gradient(
+        180deg,
+        rgba(7, 19, 12, 0.9) 0%,
+        rgba(5, 16, 10, 0.98) 100%
+    );
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-preview-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(61, 220, 132, 0.28);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+.blog-preview-image {
+    display: block;
+    width: 100%;
+    height: 260px;   /* این باعث یکسان شدن ارتفاع عکس‌ها می‌شود */
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.02);
+    flex-shrink: 0;
+}
+
+.blog-preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* عکس را بدون به‌هم‌ریختگی فیت می‌کند */
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.blog-preview-card:hover .blog-preview-image img {
+    transform: scale(1.04);
+}
+
+.blog-preview-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 22px 22px 24px;
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.blog-preview-content h3 {
+    margin: 0 0 14px;
+    font-size: 1.35rem;
+    line-height: 1.4;
+    min-height: 3.8rem; /* تقریباً دو خط */
+}
+
+.blog-preview-content h3 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;   /* حداکثر 2 خط */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blog-preview-content h3 a:hover {
+    color: var(--primary);
+}
+
+.blog-preview-content p {
+    margin: 0 0 18px;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    font-size: 0.97rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;   /* حداکثر 3 خط */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 5.4rem; /* ارتفاع ثابت برای متن */
+}
+
+.blog-preview-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: auto;   /* لینک همیشه پایین کارت می‌نشیند */
+}
+
+.blog-preview-link:hover {
+    opacity: 0.9;
 }

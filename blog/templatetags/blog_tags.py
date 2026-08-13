@@ -1,6 +1,7 @@
 from django import template
 from blog.models import Post,Category
 from django.utils import timezone
+from taggit.models import Tag
 
 register = template.Library()
 
@@ -43,3 +44,22 @@ def postcategories():
 def recentblogposts(arg=6):
     posts = Post.objects.filter(published_date__lte=timezone.now(),status=True).order_by("-published_date")[:arg]
     return {"posts":posts}
+
+
+@register.inclusion_tag('blog/blog-tags.html')
+def alltags():
+    tags = Tag.objects.all().order_by('name')
+    return {'tags': tags}
+
+
+@register.inclusion_tag('blog/home-latest-posts.html')
+def home_latest_posts(arg=3):
+
+    posts = Post.objects.filter(
+        published_date__lte=timezone.now(),
+        status=True
+    ).order_by('-published_date')[:arg]
+
+    return {
+        'posts': posts
+    }
