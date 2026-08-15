@@ -1222,8 +1222,8 @@ html[data-theme="light"] .theme-logo-light {
 }
 
 @media (max-width: 600px) {
-    .site-logo {
-        height: 39px;
+    .site-header .site-logo {
+        height: 120px;
     }
 
     .footer-site-logo {

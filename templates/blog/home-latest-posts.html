@@ -1,0 +1,57 @@
+<div class="blog-preview-grid">
+
+    {% for post in posts %}
+
+        <article class="blog-preview-card">
+
+            <a
+                href="{{ post.get_absolute_url }}"
+                class="blog-preview-image"
+                aria-label="Read {{ post.title }}"
+            >
+                <img
+                    src="{{ post.image.url }}"
+                    alt="{{ post.title }}"
+                    loading="lazy"
+                >
+            </a>
+
+
+            <div class="blog-preview-content">
+
+                <div class="blog-meta">
+                    <span>{{ post.published_date|date:"M d, Y" }}</span>
+                </div>
+
+
+                <h3>
+                    <a href="{{ post.get_absolute_url }}">
+                        {{ post.title }}
+                    </a>
+                </h3>
+
+
+                <p>
+                    {{ post.content|striptags|truncatewords:20 }}
+                </p>
+
+
+                <a
+                    href="{{ post.get_absolute_url }}"
+                    class="blog-preview-link"
+                >
+                    Read article
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+        </article>
+
+    {% empty %}
+
+        <p>No articles have been published yet.</p>
+
+    {% endfor %}
+
+</div>
