@@ -58,34 +58,12 @@
     text-align: center;
 }
 
-.contact-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 24px;
-    padding: 8px 14px;
-    border: 1px solid var(--primary-border);
-    border-radius: var(--radius-round);
-    background: var(--primary-soft);
-    color: var(--primary-light);
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-.contact-badge-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--primary);
-    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
-}
-
 .contact-hero h1 {
     max-width: 780px;
     margin: 0 auto 24px;
     color: var(--text);
-    font-size: clamp(2.6rem, 6vw, 5.4rem);
-    font-weight: 900;
+    font-size: clamp(1.6rem, 5.0vw, 4.4rem);
+    font-weight: 600;
     letter-spacing: -4px;
     line-height: 1.02;
 }
@@ -115,20 +93,6 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
-}
-
-.contact-email-link {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-    font-weight: 600;
-    text-decoration: underline;
-    text-decoration-color: var(--primary-border);
-    text-underline-offset: 6px;
-    transition: color var(--transition-fast);
-}
-
-.contact-email-link:hover {
-    color: var(--primary-light);
 }
 
 
@@ -165,7 +129,7 @@
     margin-bottom: 18px;
     color: var(--text);
     font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 850;
+    font-weight: 650;
     letter-spacing: -1.5px;
     line-height: 1.2;
 }
@@ -177,44 +141,8 @@
     line-height: 1.9;
 }
 
-.contact-info-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
 
-.contact-info-card {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 17px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-medium);
-    background: var(--surface);
-    transition:
-        border-color var(--transition-fast),
-        background-color var(--transition-fast),
-        transform var(--transition-fast);
-}
 
-.contact-info-card:hover {
-    border-color: var(--primary-border);
-    background: var(--surface-secondary);
-    transform: translateY(-2px);
-}
-
-.contact-info-icon {
-    display: inline-flex;
-    width: 44px;
-    height: 44px;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--primary-border);
-    border-radius: 13px;
-    background: var(--primary-soft);
-    color: var(--primary-light);
-}
 
 .contact-info-icon svg {
     width: 20px;
@@ -344,8 +272,8 @@
 .contact-form-header h2 {
     margin: 0;
     color: var(--text);
-    font-size: clamp(1.65rem, 3vw, 2.2rem);
-    font-weight: 850;
+    font-size: clamp(1.15rem, 2.5vw, 1.7rem);
+    font-weight: 650;
     letter-spacing: -1.2px;
 }
 
@@ -934,10 +862,6 @@
         flex-direction: column;
     }
 
-    .contact-email-link {
-        text-align: center;
-    }
-
     .contact-form input,
     .contact-form select {
         font-size: 0.88rem;
@@ -1041,4 +965,230 @@
         width: 100%;
         max-width: 180px;
     }
+}
+
+
+
+/* =========================================
+   FLECTA Global Background Integration
+========================================= */
+
+.contact-page,
+.contact-page .site-main,
+.contact-hero,
+.contact-section,
+.contact-services,
+.contact-faq,
+.contact-page .site-footer {
+    background: transparent !important;
+}
+
+
+/* حذف بک‌گراند و خط مستقل Services */
+.contact-services {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+
+/* حذف هاله سبز قدیمی مخصوص Contact
+   چون هاله‌های جدید از base.css می‌آیند */
+.contact-hero::before {
+    display: none !important;
+}
+
+
+/* =========================================
+   Contact — Glass UI
+========================================= */
+
+.contact-page {
+    --glass-bg: rgba(8, 18, 12, 0.38);
+    --glass-bg-hover: rgba(10, 24, 15, 0.50);
+
+    --glass-border: rgba(255, 255, 255, 0.09);
+    --glass-border-hover: rgba(74, 222, 128, 0.24);
+
+    --glass-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================
+   MAIN GLASS CARDS
+========================================= */
+
+.contact-info-card,
+.contact-form-wrapper,
+.contact-service-card,
+.contact-faq-item {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.035),
+            rgba(5, 15, 9, 0.20)
+        ) !important;
+
+    border: 1px solid var(--glass-border);
+
+    box-shadow: var(--glass-shadow);
+
+    backdrop-filter:
+        blur(14px)
+        saturate(115%);
+
+    -webkit-backdrop-filter:
+        blur(14px)
+        saturate(115%);
+}
+
+
+/* =========================================
+   INFO CARDS
+========================================= */
+
+.contact-info-card:hover {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(7, 22, 13, 0.28)
+        ) !important;
+
+    border-color: var(--glass-border-hover);
+}
+
+
+/* =========================================
+   FORM WRAPPER
+========================================= */
+
+.contact-form-wrapper {
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+
+/* =========================================
+   INPUTS / SELECT / TEXTAREA
+========================================= */
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea,
+.contact-process-list > li > span,
+.contact-info-icon,
+.captcha-control input[type="text"] {
+    background: rgba(255, 255, 255, 0.025) !important;
+
+    border-color: rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+.contact-form input:hover,
+.contact-form select:hover,
+.contact-form textarea:hover,
+.captcha-control input[type="text"]:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
+
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus,
+.captcha-control input[type="text"]:focus {
+    background: rgba(10, 28, 17, 0.40) !important;
+
+    border-color: rgba(74, 222, 128, 0.60);
+
+    box-shadow:
+        0 0 0 3px rgba(34, 197, 94, 0.08),
+        0 8px 25px rgba(0, 0, 0, 0.14);
+}
+
+
+/* =========================================
+   SECURE BADGE
+========================================= */
+
+.secure-form-badge {
+    background: rgba(255, 255, 255, 0.035) !important;
+
+    border-color: rgba(255, 255, 255, 0.09);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================================
+   SERVICE CARDS
+========================================= */
+
+.contact-service-card:hover {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(6, 25, 13, 0.020)
+        ) !important;
+
+    border-color: rgba(74, 222, 128, 0.16);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.22),
+        0 0 30px rgba(34, 197, 94, 0.025);
+
+    transform: translateY(-4px);
+}
+
+
+/* اون دایره سبز بزرگ داخل کارت Services رو ضعیف‌تر کن */
+.contact-service-card::after {
+    background: rgba(34, 197, 94, 0.045);
+}
+
+
+/* =========================================
+   FAQ GLASS
+========================================= */
+
+.contact-faq-item[open] {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(7, 23, 13, 0.10)
+        ) !important;
+
+    border-color: rgba(74, 222, 128, 0.22);
+}
+
+
+.faq-toggle {
+    background: rgba(255, 255, 255, 0.035);
+}
+
+
+/* =========================================
+   SMALL ELEMENTS
+========================================= */
+
+.contact-info-icon,
+.contact-process-list > li > span {
+    background: rgba(34, 197, 94, 0.07);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+
+.custom-checkbox {
+    background: rgba(255, 255, 255, 0.035);
 }

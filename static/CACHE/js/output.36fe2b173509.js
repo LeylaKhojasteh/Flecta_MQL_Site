@@ -1,0 +1,22 @@
+"use strict";document.addEventListener("DOMContentLoaded",function(){const html=document.documentElement;const body=document.body;const header=document.getElementById("site-header");const themeToggle=document.getElementById("theme-toggle");const mobileMenuButton=document.getElementById("mobile-menu-button");const mobileNavigation=document.getElementById("mobile-navigation");const mobileNavigationOverlay=document.getElementById("mobile-navigation-overlay");const backToTopButton=document.getElementById("back-to-top");const currentYear=document.getElementById("current-year");const mobileLinks=document.querySelectorAll(".mobile-navigation-link");const navigationLinks=document.querySelectorAll(".navigation-link, .mobile-navigation-link");function changeTheme(){const currentTheme=html.getAttribute("data-theme");const nextTheme=currentTheme==="dark"?"light":"dark";html.setAttribute("data-theme",nextTheme);localStorage.setItem("mql-theme",nextTheme);updateThemeButtonLabel(nextTheme);}
+function updateThemeButtonLabel(theme){if(!themeToggle){return;}
+const label=theme==="dark"?"Switch to light mode":"Switch to dark mode";themeToggle.setAttribute("aria-label",label);themeToggle.setAttribute("title",label);}
+function openMobileMenu(){if(!mobileMenuButton||!mobileNavigation||!mobileNavigationOverlay){return;}
+mobileMenuButton.classList.add("is-active");mobileNavigation.classList.add("is-open");mobileNavigationOverlay.classList.add("is-visible");mobileMenuButton.setAttribute("aria-expanded","true");mobileNavigation.setAttribute("aria-hidden","false");mobileNavigationOverlay.setAttribute("aria-hidden","false");body.classList.add("menu-open");}
+function closeMobileMenu(){if(!mobileMenuButton||!mobileNavigation||!mobileNavigationOverlay){return;}
+mobileMenuButton.classList.remove("is-active");mobileNavigation.classList.remove("is-open");mobileNavigationOverlay.classList.remove("is-visible");mobileMenuButton.setAttribute("aria-expanded","false");mobileNavigation.setAttribute("aria-hidden","true");mobileNavigationOverlay.setAttribute("aria-hidden","true");body.classList.remove("menu-open");}
+function toggleMobileMenu(){const isOpen=mobileNavigation?.classList.contains("is-open");if(isOpen){closeMobileMenu();}else{openMobileMenu();}}
+function handleHeaderScroll(){if(!header){return;}
+header.classList.toggle("is-scrolled",window.scrollY>20);}
+function handleBackToTopVisibility(){if(!backToTopButton){return;}
+backToTopButton.classList.toggle("is-visible",window.scrollY>500);}
+function setActiveNavigationLink(){let currentPath=window.location.pathname;if(!currentPath.endsWith("/")){currentPath+="/";}
+navigationLinks.forEach(function(link){let linkPath=new URL(link.href,window.location.origin).pathname;if(!linkPath.endsWith("/")){linkPath+="/";}
+const isHome=currentPath==="/"&&linkPath==="/";const isOtherPage=linkPath!=="/"&&currentPath.startsWith(linkPath);if(isHome||isOtherPage){link.classList.add("active");link.setAttribute("aria-current","page");}else{link.classList.remove("active");link.removeAttribute("aria-current");}});}
+function setupMessageCloseButtons(){const closeButtons=document.querySelectorAll(".message-close");closeButtons.forEach(function(button){button.addEventListener("click",function(){const message=button.closest(".site-message");if(!message){return;}
+message.style.opacity="0";message.style.transform="translateY(-8px)";window.setTimeout(function(){message.remove();},250);});});}
+if(themeToggle){themeToggle.addEventListener("click",changeTheme);}
+if(mobileMenuButton){mobileMenuButton.addEventListener("click",toggleMobileMenu);}
+if(mobileNavigationOverlay){mobileNavigationOverlay.addEventListener("click",closeMobileMenu);}
+mobileLinks.forEach(function(link){link.addEventListener("click",closeMobileMenu);});if(backToTopButton){backToTopButton.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth",});});}
+window.addEventListener("scroll",function(){handleHeaderScroll();handleBackToTopVisibility();},{passive:true,});window.addEventListener("resize",function(){if(window.innerWidth>1050){closeMobileMenu();}});document.addEventListener("keydown",function(event){if(event.key==="Escape"){closeMobileMenu();}});const currentTheme=html.getAttribute("data-theme")||"dark";updateThemeButtonLabel(currentTheme);handleHeaderScroll();handleBackToTopVisibility();setActiveNavigationLink();setupMessageCloseButtons();if(currentYear){currentYear.textContent=new Date().getFullYear().toString();}});;
