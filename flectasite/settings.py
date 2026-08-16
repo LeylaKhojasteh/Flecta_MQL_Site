@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
 
+    # Django Compressor
+    'compressor',
     'debug_toolbar',
     'robots',
     'taggit',
@@ -57,6 +59,8 @@ INSTALLED_APPS = [
     'website.apps.WebsiteConfig',
     'blog',
     'accounts'
+    
+
 ]
 
 

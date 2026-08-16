@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="dark">
@@ -44,7 +45,9 @@
         rel="stylesheet">
 
     <!-- Main stylesheet -->
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endcompress %}
 
     {% block extra_css %}{% endblock %}
 </head>
@@ -675,7 +678,9 @@
     </button>
 
     <!-- Main JavaScript -->
+    {% compress js %}
     <script src="{% static 'js/base.js' %}"></script>
+    {% endcompress %}
 
     {% block extra_js %}{% endblock %}
 </body>

@@ -38,23 +38,43 @@ STATICFILES_DIRS = [
 ]
 
 
+
+# ==================================
+# Django Compressor
+# ==================================
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
+
+COMPRESS_ROOT = STATIC_ROOT
+
+COMPRESS_ENABLED = False  # Set to True in production
+
+# For production / offline compression
+COMPRESS_OFFLINE = False  # Set to True in production
+
+
+
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 # X-Content-Type-Options
 SECURE_CONTENT_TYPE_NOSNIFF = True
 # Strict-Transport-Security
-SECURE_HSTS_SECONDS = 15768000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_SECONDS = 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
 
 # Redirect HTTP requests to HTTPS
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False  # Set to True in production
 
 # For more security
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False  # Set to True in production
 CSRF_USE_SESSIONS = True
 CSRF_COOKIE_HTTPONLY = True
 
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False  # Set to True in production
 SESSION_COOKIE_SAMESITE = "Strict"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
