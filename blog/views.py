@@ -41,17 +41,20 @@ def blog_single(request,pid):
         post.save(update_fields=['counted_views'])
 
     if request.method == "POST":
-        form = CommentForm(request.POST)
+        form = CommentForm(request.POST, user=request.user)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            if request.user.is_authenticated:
+                comment.name = request.user.username
+                comment.email = request.user.email
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Your comment has submitted successfully!')
             return redirect('blog:single', pid=post.id)
         else:
             messages.add_message(request,messages.ERROR,'Your comment was not submitted. Please check the form.')
     else:
-        form = CommentForm()
+        form = CommentForm(user=request.user)
 
     posts = list(Post.objects.filter(status=True,published_date__lte=timezone.now()).order_by('-published_date'))
     comments = Comment.objects.filter(post=post.id,approved=True)

@@ -35,6 +35,7 @@ html[data-theme="dark"] {
     --background: #061009;
     --background-secondary: #08150d;
     --surface: #0c1b11;
+    --surface-solid: rgba(0, 0, 0, 0.92);
     --surface-secondary: #102218;
     --surface-hover: #142a1d;
 
@@ -59,6 +60,7 @@ html[data-theme="light"] {
     --background: #f7fbf8;
     --background-secondary: #f0f7f2;
     --surface: #ffffff;
+    --surface-solid: rgba(255, 255, 255, 0.94);
     --surface-secondary: #f4faf6;
     --surface-hover: #ebf7ef;
 
@@ -1352,7 +1354,7 @@ html[data-theme="light"] .theme-logo-light {
     align-items: center;
 
     gap: 9px;
-    padding: 5px 10px 5px 6px;
+    padding: 5px 10px;
 
     border: 1px solid var(--border);
     border-radius: 14px;
@@ -1370,39 +1372,6 @@ html[data-theme="light"] .theme-logo-light {
 .account-menu[open] .account-trigger {
     border-color: var(--primary-border);
     background: var(--primary-soft);
-}
-
-
-/* Avatar */
-.account-avatar {
-    display: inline-flex;
-    width: 34px;
-    height: 34px;
-    flex-shrink: 0;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid var(--primary-border);
-    border-radius: 10px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(34, 197, 94, 0.18),
-            rgba(34, 197, 94, 0.07)
-        );
-
-    color: var(--primary-light);
-
-    font-size: 0.75rem;
-    font-weight: 900;
-}
-
-.account-avatar-large {
-    width: 39px;
-    height: 39px;
-    border-radius: 11px;
 }
 
 
@@ -1476,6 +1445,8 @@ html[data-theme="light"] .theme-logo-light {
     border-radius: 16px;
 
     background: var(--surface-solid);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
     box-shadow:
         0 22px 60px rgba(0, 0, 0, 0.34),

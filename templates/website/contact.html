@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
 
 {% block title %}
 Contact Us | FLECTA
@@ -9,12 +10,17 @@ Contact Us | FLECTA
 Contact FLECTA to order a custom MQL4 or MQL5 Expert Advisor, indicator, trading tool, or code debugging service.
 {% endblock %}
 
+{% block social_title %}Contact Us | FLECTA{% endblock %}
+{% block social_description %}Contact FLECTA for custom MQL4 and MQL5 Expert Advisors, indicators, trading tools, and debugging services.{% endblock %}
+
 {% block body_class %}
 contact-page
 {% endblock %}
 
 {% block extra_css %}
+{% compress css %}
 <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endcompress %}
 {% endblock %}
 
 {% block content %}
@@ -423,73 +429,6 @@ contact-page
 </section>
 
 
-<!-- =====================================
-     Services Summary
-====================================== -->
-<section class="contact-services">
-	<div class="container">
-
-		<div class="contact-services-heading">
-			<span class="section-label">
-				Development Services
-			</span>
-
-			<h2>Projects you can order from FLECTA</h2>
-		</div>
-
-		<div class="contact-services-grid">
-
-			<article class="contact-service-card">
-				<span class="service-number">01</span>
-
-				<h3>Expert Advisors</h3>
-
-				<p>
-					Custom automated trading systems based on your
-					strategy and risk management rules.
-				</p>
-			</article>
-
-
-			<article class="contact-service-card">
-				<span class="service-number">02</span>
-
-				<h3>Custom Indicators</h3>
-
-				<p>
-					Technical indicators, signals, alerts, and visual
-					tools for MetaTrader charts.
-				</p>
-			</article>
-
-
-			<article class="contact-service-card">
-				<span class="service-number">03</span>
-
-				<h3>Code Debugging</h3>
-
-				<p>
-					Fixing MQL errors, improving existing code, and
-					optimizing performance.
-				</p>
-			</article>
-
-
-			<article class="contact-service-card">
-				<span class="service-number">04</span>
-
-				<h3>MQL Migration</h3>
-
-				<p>
-					Converting MQL4 projects to MQL5 with updated
-					functionality and structure.
-				</p>
-			</article>
-
-		</div>
-
-	</div>
-</section>
 
 
 <!-- =====================================

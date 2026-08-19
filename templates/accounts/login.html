@@ -1,61 +1,14 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-    <!-- فایل CSS خودت -->
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-
-
-    <title>Login</title>
-</head>
-<body>
-
-<div class="sidenav">
-         <div class="login-main-text">
-            <h2>Application<br> Login Page</h2>
-            <p>Login from here to access.</p>
-         </div>
-      </div>
-      <div class="main">
-         <div class="col-md-6 col-sm-12">
-            <div class="login-form">
-               <form method="post" action="{% url 'accounts:login' %}">
-                  {% csrf_token %}
-                  <div class="form-group">
-                    <!-- {{form.as_p}} -->
-                     <label>Username or Email</label>
-                     <!-- <input type="text" name="username" class="form-control" placeholder="Username"> -->
-                      {{form.username}}
-                  </div>
-                  <div class="form-group">
-                     <label>Password</label>
-                     <!-- <input type="password" name="password" class="form-control" placeholder="Password"> -->
-                      {{form.password}}
-                  </div>
-                   {% if form.non_field_errors %}
-                     <div class="alert alert-danger">
-                        {{ form.non_field_errors }}
-                     </div>
-                  {% endif %}
-                  <div> <a href="{% url 'accounts:password_reset' %}">Forgot Password?</a></div>
-
-                  <button type="submit" class="btn btn-black">Login</button>
-                  <!-- <button type="submit" class="btn btn-secondary">Register</button> -->
-               </form>
-            </div>
-         </div>
-      </div>
-
-        <!-- کتابخانه‌های جاوااسکریپت -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-</body>
-</html>
+{% extends "accounts/auth-base.html" %}
+{% block title %}Login{% endblock %}
+{% block card_content %}
+<header class="auth-card-header"><h2>Sign in</h2><p>Enter your username or email and password.</p></header>
+<form method="post" action="{% url 'accounts:login' %}" class="auth-form">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="auth-alert" role="alert">{{ form.non_field_errors }}</div>{% endif %}
+    <div class="auth-field"><label for="{{ form.username.id_for_label }}">Username or email</label>{{ form.username }}{% for error in form.username.errors %}<span class="auth-field-error">{{ error }}</span>{% endfor %}</div>
+    <div class="auth-field"><label for="{{ form.password.id_for_label }}">Password</label>{{ form.password }}{% for error in form.password.errors %}<span class="auth-field-error">{{ error }}</span>{% endfor %}</div>
+    <div class="auth-form-options"><a class="auth-link" href="{% url 'accounts:password_reset' %}">Forgot password?</a></div>
+    <button type="submit" class="auth-button">Sign in</button>
+</form>
+<p class="auth-footer">New to FLECTA? <a class="auth-link" href="{% url 'accounts:signup' %}">Create an account</a></p>
+{% endblock %}

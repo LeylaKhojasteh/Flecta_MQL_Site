@@ -2,8 +2,12 @@ from dataclasses import fields
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from website.forms import NameForm,ContactForm, NewsletterForm
+from website.forms import NameForm,ContactForm
 from django.contrib import messages
+from website.models import Contact
+from django.conf import settings
+from django.core.mail import EmailMessage
+
 
 def home_view(request):
     return render(request,'website/home.html')
@@ -30,18 +34,30 @@ def contact_view(request):
             subject = form.cleaned_data["subject"]
             message = form.cleaned_data["message"]
 
-            # اینجا منطق قبلی خودت را قرار بده.
-            # مثلاً:
-            # 1. ذخیره داخل دیتابیس
-            # 2. ارسال ایمیل
-            # 3. ثبت درخواست پروژه
+            Contact.objects.create(
+                name=full_name,
+                email=email,
+                project_type=project_type,
+                platform=platform,
+                subject=subject,
+                message=message,
+                )
 
-            print("Full name:", full_name)
-            print("Email:", email)
-            print("Project type:", project_type)
-            print("Platform:", platform)
-            print("Subject:", subject)
-            print("Message:", message)
+            email_message = EmailMessage(
+                    subject=f"New project request: {subject}",
+                    body=(
+                        f"Name: {full_name}\n"
+                        f"Email: {email}\n"
+                        f"Project type: {project_type}\n"
+                        f"Platform: {platform}\n\n"
+                        f"Message:\n{message}"
+                    ),
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[settings.CONTACT_RECIPIENT_EMAIL],
+                    reply_to=[email],
+                )
+
+            email_message.send(fail_silently=False)
 
             messages.success(
                 request,
@@ -65,23 +81,3 @@ def contact_view(request):
     )
 
 
-def newsletter_view(request):
-    if request.method == 'POST':
-        form = NewsletterForm(request.POST)
-        if form.is_valid():
-            form.save()
-
-    return HttpResponseRedirect('/')
-
-
-def test_view(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            print('true')
-        else:
-            print('false')
-
-    form = ContactForm()
-    return render(request,'test.html',{'form':form})

@@ -1,4 +1,5 @@
 from flectasite.settings import *
+import os
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -6,7 +7,7 @@ from flectasite.settings import *
 SECRET_KEY = 'django-insecure-(nsq+!49s62qhu=)1%jf(y*q2l+sy$ki%xctb$k=gmz%2vh!ue'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['flectamql.ir', 'www.flectamql.ir','127.0.0.1']
 
@@ -15,7 +16,7 @@ ALLOWED_HOSTS = ['flectamql.ir', 'www.flectamql.ir','127.0.0.1']
 # INSTALLED_APPS = []
 
 #sites framework
-SITE_ID = 2
+SITE_ID = 3
 
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
@@ -52,6 +53,8 @@ STATICFILES_FINDERS = [
 
 
 COMPRESS_ROOT = STATIC_ROOT
+
+
 
 # با DEBUG=False خودش به صورت پیش‌فرض True است،
 # ولی برای واضح بودن می‌توانی بنویسی:
@@ -99,3 +102,8 @@ EMAIL_TIMEOUT = 20
 
 DEFAULT_FROM_EMAIL = "FLECTA MQL <manager@flectamql.ir>"
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+CONTACT_RECIPIENT_EMAIL = os.getenv(
+    "CONTACT_RECIPIENT_EMAIL",
+    EMAIL_HOST_USER,
+)

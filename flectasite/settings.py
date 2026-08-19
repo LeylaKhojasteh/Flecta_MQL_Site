@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from flectasite.env import load_env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_env(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +32,7 @@ ALLOWED_HOSTS = []
 
 
 #sites framework
-SITE_ID = 2
+SITE_ID = 3
 
 
 
