@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load blog_tags %}
 {% load static %}
+{% load compress %}
 
 {% block title %}
 {{ post.title }} | FLECTA
@@ -10,13 +11,47 @@
 {{ post.content|striptags|truncatewords:28 }}
 {% endblock %}
 
+{% block social_type %}article{% endblock %}
+{% block social_title %}{{ post.title }} | FLECTA{% endblock %}
+{% block social_description %}{{ post.content|striptags|truncatewords:28 }}{% endblock %}
+{% block social_image %}{{ request.scheme }}://{{ request.get_host }}{{ post.image.url }}{% endblock %}
+{% block social_image_alt %}{{ post.title }}{% endblock %}
+
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ request.build_absolute_uri|escapejs }}"
+    },
+    "headline": "{{ post.title|escapejs }}",
+    "description": "{{ post.content|striptags|truncatewords:28|escapejs }}",
+    "image": "{{ request.scheme }}://{{ request.get_host }}{{ post.image.url|escapejs }}",
+    "datePublished": "{{ post.published_date|date:'c' }}",
+    "dateModified": "{{ post.updated_date|date:'c' }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ post.author.get_full_name|default:post.author.username|default:'FLECTA'|escapejs }}"
+    },
+    "publisher": {
+        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+    }
+}
+</script>
+{% endblock %}
+
 {% block body_class %}
 blog-page blog-single-page
 {% endblock %}
 
 {% block extra_css %}
+{% compress css %}
 <link rel="stylesheet" href="{% static 'css/blog-home.css' %}">
 <link rel="stylesheet" href="{% static 'css/blog-single.css' %}">
+{% endcompress %}
 {% endblock %}
 
 {% block content %}

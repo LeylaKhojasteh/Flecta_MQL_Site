@@ -1,12 +1,9 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-    const html = document.documentElement;
     const body = document.body;
 
     const header = document.getElementById("site-header");
-    const themeToggle = document.getElementById("theme-toggle");
-
     const mobileMenuButton = document.getElementById(
         "mobile-menu-button"
     );
@@ -29,35 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const navigationLinks = document.querySelectorAll(
         ".navigation-link, .mobile-navigation-link"
     );
-
-    /**
-     * تغییر تم
-     */
-    function changeTheme() {
-        const currentTheme = html.getAttribute("data-theme");
-        const nextTheme = currentTheme === "dark" ? "light" : "dark";
-
-        html.setAttribute("data-theme", nextTheme);
-        localStorage.setItem("mql-theme", nextTheme);
-
-        updateThemeButtonLabel(nextTheme);
-    }
-
-    /**
-     * تغییر متن دسترسی‌پذیری دکمه تم
-     */
-    function updateThemeButtonLabel(theme) {
-        if (!themeToggle) {
-            return;
-        }
-
-        const label = theme === "dark"
-            ? "Switch to light mode"
-            : "Switch to dark mode";
-
-        themeToggle.setAttribute("aria-label", label);
-        themeToggle.setAttribute("title", label);
-    }
 
     /**
      * باز کردن منوی موبایل
@@ -213,10 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
     /**
      * ثبت رویدادها
      */
-    if (themeToggle) {
-        themeToggle.addEventListener("click", changeTheme);
-    }
-
     if (mobileMenuButton) {
         mobileMenuButton.addEventListener(
             "click",
@@ -266,10 +230,6 @@ document.addEventListener("DOMContentLoaded", function () {
     /**
      * مقداردهی اولیه
      */
-    const currentTheme =
-        html.getAttribute("data-theme") || "dark";
-
-    updateThemeButtonLabel(currentTheme);
     handleHeaderScroll();
     handleBackToTopVisibility();
     setActiveNavigationLink();

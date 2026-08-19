@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load blog_tags %}
 {% load static %}
+{% load compress %}
 
 {% block title %}
 FLECTA | MQL Development
@@ -11,12 +12,21 @@ FLECTA provides custom MQL4 and MQL5 development services including Expert Advis
 MetaTrader automation solutions.
 {% endblock %}
 
+{% block social_title %}FLECTA | MQL Development{% endblock %}
+{% block social_description %}Custom MQL4 and MQL5 Expert Advisors, indicators, trading tools, and MetaTrader automation solutions.{% endblock %}
+
 {% block body_class %}
 home-page
 {% endblock %}
 
+{% block resource_hints %}
+<link rel="preload" href="{% static 'img/banner2.webp' %}" as="image" type="image/webp" fetchpriority="high">
+{% endblock %}
+
 {% block extra_css %}
+{% compress css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endcompress %}
 {% endblock %}
 
 {% block content %}
@@ -25,7 +35,7 @@ home-page
 <!-- =====================================
      Hero
 ====================================== -->
-<section class="home-hero" style="--hero-bg: url('{% static 'img/banner2.png' %}');">
+<section class="home-hero" style="--hero-bg: url('{% static 'img/banner2.webp' %}');">
     <div class="container home-hero-container">
 
         <div class="home-hero-content">
@@ -62,7 +72,8 @@ home-page
             <div class="hero-platforms">
 
                 <div class="hero-platform">
-                    <img src="{% static 'img/mt4.png' %}" alt="MetaTrader 4" class="hero-platform-logo">
+                    <img src="{% static 'img/mt4.webp' %}" alt="MetaTrader 4" width="1278" height="1230"
+                        class="hero-platform-logo">
 
                     <div>
                         <strong>MT4</strong>
@@ -72,7 +83,8 @@ home-page
 
 
                 <div class="hero-platform">
-                    <img src="{% static 'img/mt5.png' %}" alt="MetaTrader 5" class="hero-platform-logo">
+                    <img src="{% static 'img/mt5.webp' %}" alt="MetaTrader 5" width="1325" height="1187"
+                        class="hero-platform-logo">
 
                     <div>
                         <strong>MT5</strong>
@@ -82,7 +94,7 @@ home-page
 
 
                 <div class="hero-platform">
-                    <img src="{% static 'img/tradingview.png' %}" alt="TradingView"
+                    <img src="{% static 'img/tradingview.webp' %}" alt="TradingView" width="320" height="320"
                         class="hero-platform-logo hero-platform-logo-tv">
 
                     <div>
@@ -280,6 +292,8 @@ home-page
                     <img
                         src="{% static 'img/projects/bos.png' %}"
                         alt="BOS Swing Breakout MT4 Expert Advisor project"
+                        width="1877"
+                        height="836"
                         loading="lazy"
                     >
 
@@ -318,6 +332,8 @@ home-page
                     <img
                         src="{% static 'img/projects/macd_cci.png' %}"
                         alt="MACD CCI Trend Filter MT4 Indicator project"
+                        width="1862"
+                        height="791"
                         loading="lazy"
                     >
 

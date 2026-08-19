@@ -5,6 +5,15 @@
 <html lang="en" dir="ltr" data-theme="dark">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WB0D9LSYL3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WB0D9LSYL3');
+    </script>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,26 +25,59 @@
 
     <meta name="theme-color" content="#07130c">
 
+    <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">
+
+    <meta property="og:type" content="{% block social_type %}website{% endblock %}">
+    <meta property="og:site_name" content="FLECTA">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="{% block social_url %}{{ request.build_absolute_uri }}{% endblock %}">
+    <meta property="og:title" content="{% block social_title %}FLECTA | MQL Development{% endblock %}">
+    <meta property="og:description"
+        content="{% block social_description %}Professional MQL4 and MQL5 development, custom Expert Advisors, indicators, and automated trading systems.{% endblock %}">
+    <meta property="og:image"
+        content="{% block social_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'img/banner2.webp' %}{% endblock %}">
+    <meta property="og:image:alt" content="{% block social_image_alt %}FLECTA MQL development services{% endblock %}">
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" sizes="any">
+    <link rel="icon" type="image/png" href="{% static 'img/logofav.png' %}">
+
     <title>
         {% block title %}FLECTA | MQL Development{% endblock %}
     </title>
 
-    <!-- Prevent theme flashing during page load -->
-    <script>
-        (function () {
-            const savedTheme = localStorage.getItem("mql-theme");
-
-            const systemPrefersLight = window.matchMedia(
-                "(prefers-color-scheme: light)"
-            ).matches;
-
-            const theme = savedTheme || (
-                systemPrefersLight ? "light" : "dark"
-            );
-
-            document.documentElement.setAttribute("data-theme", theme);
-        })();
+    {% block structured_data %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+                "name": "FLECTA",
+                "url": "{{ request.scheme }}://{{ request.get_host }}/",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo.webp' %}"
+                },
+                "description": "Professional MQL4 and MQL5 development, custom Expert Advisors, indicators, and automated trading systems."
+            },
+            {
+                "@type": "WebSite",
+                "@id": "{{ request.scheme }}://{{ request.get_host }}/#website",
+                "url": "{{ request.scheme }}://{{ request.get_host }}/",
+                "name": "FLECTA",
+                "publisher": {
+                    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+                }
+            }
+        ]
+    }
     </script>
+    {% endblock %}
+
+    {% block resource_hints %}{% endblock %}
 
     <!-- English font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,8 +183,8 @@
 
 
             <a href="/" class="brand brand-image" aria-label="FLECTA home page">
-                <img src="{% static 'img/logo.png' %}" alt="FLECTA MQL" class="site-logo theme-logo-dark">
-                <img src="{% static 'img/logolight.png' %}" alt="FLECTA MQL" class="site-logo theme-logo-light">
+                <img src="{% static 'img/logo.webp' %}" alt="FLECTA MQL" width="1536" height="1024"
+                    class="site-logo theme-logo-dark">
             </a>
 
             <!-- Desktop Navigation -->
@@ -177,10 +219,6 @@
 
                         <summary class="account-trigger">
 
-                            <span class="account-avatar">
-                                {{ request.user.username|first|upper }}
-                            </span>
-
                             <span class="account-info">
                                 <small>Signed in as</small>
                                 <strong>{{ request.user.username }}</strong>
@@ -196,10 +234,6 @@
                         <div class="account-dropdown">
 
                             <div class="account-dropdown-header">
-                                <span class="account-avatar account-avatar-large">
-                                    {{ request.user.username|first|upper }}
-                                </span>
-
                                 <div>
                                     <small>Account</small>
                                     <strong>{{ request.user.username }}</strong>
@@ -238,27 +272,6 @@
                     {% endif %}
 
                 </div>
-                <!-- Theme Button -->
-                <button type="button" class="icon-button theme-toggle" id="theme-toggle"
-                    aria-label="Change display theme" title="Change display theme">
-                    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="12" r="4"></circle>
-                        <path d="M12 2V4"></path>
-                        <path d="M12 20V22"></path>
-                        <path d="M4.93 4.93L6.34 6.34"></path>
-                        <path d="M17.66 17.66L19.07 19.07"></path>
-                        <path d="M2 12H4"></path>
-                        <path d="M20 12H22"></path>
-                        <path d="M4.93 19.07L6.34 17.66"></path>
-                        <path d="M17.66 6.34L19.07 4.93"></path>
-                    </svg>
-
-                    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M21 12.8A9 9 0 1 1 11.2 3
-                            7 7 0 0 0 21 12.8Z"></path>
-                    </svg>
-                </button>
-
                 <!-- Desktop CTA -->
                 <a href="/contact/" class="button button-primary header-cta">
                     <span>Order a Project</span>
@@ -336,10 +349,6 @@
                     {% if request.user.is_authenticated %}
 
                     <div class="mobile-user-card">
-
-                        <span class="account-avatar">
-                            {{ request.user.username|first|upper }}
-                        </span>
 
                         <div>
                             <small>Signed in as</small>
@@ -451,10 +460,8 @@
                     </a> -->
 
                     <a href="/" class="brand footer-brand brand-image">
-                        <img src="{% static 'img/logo.png' %}" alt="FLECTA MQL"
+                        <img src="{% static 'img/logo.webp' %}" alt="FLECTA MQL" width="1536" height="1024"
                             class="site-logo footer-site-logo theme-logo-dark">
-                        <img src="{% static 'img/logolight.png' %}" alt="FLECTA MQL"
-                            class="site-logo footer-site-logo theme-logo-light">
                     </a>
 
                     <p class="footer-description">
