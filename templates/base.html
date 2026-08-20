@@ -59,7 +59,7 @@
                 "url": "{{ request.scheme }}://{{ request.get_host }}/",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo.webp' %}"
+                    "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo-optimized.webp' %}"
                 },
                 "description": "Professional MQL4 and MQL5 development, custom Expert Advisors, indicators, and automated trading systems."
             },
@@ -79,12 +79,9 @@
 
     {% block resource_hints %}{% endblock %}
 
-    <!-- English font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <!-- Local Inter variable font -->
+    <link rel="preload" href="{% static 'fonts/inter/Inter-Variable-Latin.woff2' %}"
+        as="font" type="font/woff2" crossorigin>
 
     <!-- Main stylesheet -->
     {% compress css %}
@@ -183,7 +180,7 @@
 
 
             <a href="/" class="brand brand-image" aria-label="FLECTA home page">
-                <img src="{% static 'img/logo.webp' %}" alt="FLECTA MQL" width="1536" height="1024"
+                <img src="{% static 'img/logo-optimized.webp' %}" alt="FLECTA MQL" width="576" height="384"
                     class="site-logo theme-logo-dark">
             </a>
 
@@ -460,7 +457,7 @@
                     </a> -->
 
                     <a href="/" class="brand footer-brand brand-image">
-                        <img src="{% static 'img/logo.webp' %}" alt="FLECTA MQL" width="1536" height="1024"
+                        <img src="{% static 'img/logo-optimized.webp' %}" alt="FLECTA MQL" width="576" height="384"
                             class="site-logo footer-site-logo theme-logo-dark">
                     </a>
 

@@ -2,12 +2,14 @@ from django import forms
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
+from captcha.fields import CaptchaField
 
 User = get_user_model()
 
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(required=True)
+    captcha = CaptchaField(label='Security Check')
 
     class Meta:
         model = User

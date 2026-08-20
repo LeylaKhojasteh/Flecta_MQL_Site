@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block title %}Bad Request | FLECTA{% endblock %}
+{% block meta_description %}The request could not be processed. Return to FLECTA and try again.{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+{% block body_class %}error-page{% endblock %}
+
+{% block extra_css %}
+{% compress css %}
+<link rel="stylesheet" href="{% static 'css/404.css' %}">
+{% endcompress %}
+{% endblock %}
+
+{% block content %}
+<section class="error-section" aria-labelledby="error-title">
+    <div class="container error-container">
+        <div class="error-card">
+            <span class="error-code" aria-hidden="true">400</span>
+            <p class="error-label">Bad request</p>
+            <h1 id="error-title">We could not process that request.</h1>
+            <p class="error-description">
+                Something in the request was invalid. Please return to the previous page or start again from home.
+            </p>
+            <div class="error-actions">
+                <a href="{% url 'website:home' %}" class="button button-primary">Back to Home</a>
+                <a href="{% url 'website:contact' %}" class="error-secondary-link">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

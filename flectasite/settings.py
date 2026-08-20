@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 from flectasite.env import load_env
 
@@ -22,7 +23,7 @@ load_env(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hu&@5kjya28=k$8-%7n218th12+hf-m%)n2unk^_qbgy%bjrdq'
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -49,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
 
-    # Django Compressor
     'compressor',
     'debug_toolbar',
     'robots',
@@ -109,12 +109,23 @@ WSGI_APPLICATION = 'flectasite.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+   DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'flectamq_flecta',
+        'USER': 'flectamq_nasim',
+        'PASSWORD': 'Ug]a5@u*NWtcr@8b',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -180,8 +191,28 @@ INTERNAL_IPS = [
 
 
 
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    EMAIL_HOST = "flectamql.ir"
+    EMAIL_PORT = 465
+
+    EMAIL_HOST_USER = "manager@flectamql.ir"
+    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
+
+    EMAIL_USE_SSL = True
+    EMAIL_USE_TLS = False
+    EMAIL_TIMEOUT = 20
+
+    DEFAULT_FROM_EMAIL = "FLECTA MQL <manager@flectamql.ir>"
+    SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+    CONTACT_RECIPIENT_EMAIL = os.getenv(
+        "CONTACT_RECIPIENT_EMAIL",
+        EMAIL_HOST_USER,
+    )
 
 
 # SECURE_SSL_REDIRECT = True
