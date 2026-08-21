@@ -36,9 +36,11 @@ def blog_single(request,pid):
     if post.login_require and not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('accounts:login'))
 
-    if request.method == "GET":
+    view_session_key = f"viewed_post_{post.id}"
+    if request.method == "GET" and not request.session.get(view_session_key):
         post.counted_views += 1
         post.save(update_fields=['counted_views'])
+        request.session[view_session_key] = True
 
     if request.method == "POST":
         form = CommentForm(request.POST, user=request.user)

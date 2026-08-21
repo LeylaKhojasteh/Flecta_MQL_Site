@@ -4,12 +4,6 @@ body {
 
 
 
-.main-head{
-    height: 150px;
-    background: #FFF;
-   
-}
-
 .sidenav {
     height: 100%;
     background-color: #000;
@@ -31,9 +25,6 @@ body {
         margin-top: 10%;
     }
 
-    .register-form{
-        margin-top: 10%;
-    }
 }
 
 @media screen and (min-width: 768px){
@@ -53,9 +44,6 @@ body {
         margin-top: 80%;
     }
 
-    .register-form{
-        margin-top: 20%;
-    }
 }
 
 
