@@ -22,7 +22,9 @@ from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import BlogSitemap
 from website.sitemaps import StaticViewSitemap
 from website.views import coming_soon_view
-import debug_toolbar
+
+if settings.DEBUG:
+    import debug_toolbar  # noqa: F401
 
 sitemaps = {
     'static':StaticViewSitemap,
@@ -42,10 +44,12 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps':sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', include('robots.urls')),
-    path('__debug__/',include(debug_toolbar.urls)),
     path('summernote/', include('django_summernote.urls')),
     path('captcha/', include('captcha.urls')),
     ]
+
+if settings.DEBUG:
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

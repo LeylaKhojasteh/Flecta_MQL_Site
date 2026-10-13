@@ -1,0 +1,12 @@
+venv/
+.git/
+__pycache__/
+*.pyc
+*.pyo
+db.sqlite3
+db.sqlite3-journal
+static/
+.env
+Flecta_MQL.zip
+node_modules/
+.vscode/
