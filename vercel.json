@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput --settings=flectasite.setting.vercel && python manage.py compress --settings=flectasite.setting.vercel",
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
+    { "src": "/media/(.*)", "dest": "/media/$1" },
+    { "src": "/(.*)", "dest": "/api/index.py" }
+  ]
+}
