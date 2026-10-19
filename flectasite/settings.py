@@ -28,7 +28,15 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Comma-separated ALLOWED_HOSTS from env; sane local + Vercel defaults.
+ALLOWED_HOSTS = [
+    h.strip()
+    for h in os.getenv(
+        "ALLOWED_HOSTS",
+        "localhost,127.0.0.1,[::1],.vercel.app,flectamql.ir,www.flectamql.ir",
+    ).split(",")
+    if h.strip()
+]
 
 
 

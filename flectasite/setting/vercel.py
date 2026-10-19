@@ -19,12 +19,28 @@ DEBUG = False
 
 SECRET_KEY = os.getenv("SECRET_KEY", "vercel-build-placeholder-change-me")
 
-# Vercel domains + production domain. Extra hosts via env, comma separated.
-# Example: ALLOWED_HOSTS=".vercel.app,flectamql.ir,www.flectamql.ir"
-_default_hosts = ".vercel.app,flectamql.ir,www.flectamql.ir"
-ALLOWED_HOSTS = [
-    h.strip() for h in os.getenv("ALLOWED_HOSTS", _default_hosts).split(",") if h.strip()
+# Vercel domains + production domain, comma separated via env.
+# Django matches subdomains with a leading dot: ".vercel.app" covers
+# project.vercel.app AND project-git-branch-user.vercel.app.
+# NOTE: "*.vercel.app" is NOT valid in Django ALLOWED_HOSTS; use ".vercel.app".
+def _parse_hosts(raw):
+    raw = (raw or "").replace("[", "").replace("]", "").replace('"', "").replace("'", "")
+    return [h.strip() for h in raw.split(",") if h.strip()]
+
+
+_core_hosts = [
+    ".vercel.app",  # every Vercel production/preview/deployment host
+    "flectamql.ir",
+    "www.flectamql.ir",
+    "localhost",
+    "127.0.0.1",
+    "[::1]",
 ]
+ALLOWED_HOSTS = _parse_hosts(os.getenv("ALLOWED_HOSTS", ""))
+
+# Always include the core hosts, even if the dashboard env var is wrong,
+# missing, or quoted/bracketed wrong. Dedupe, preserve order.
+ALLOWED_HOSTS = list(dict.fromkeys(ALLOWED_HOSTS + _core_hosts))
 
 # Behind Vercel's proxy, Django must trust X-Forwarded-Proto.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
