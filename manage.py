@@ -6,7 +6,12 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flectasite.setting.dev')
+    default_settings = (
+        "flectasite.setting.vercel"
+        if os.getenv("VERCEL")
+        else "flectasite.setting.dev"
+    )
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', default_settings)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
