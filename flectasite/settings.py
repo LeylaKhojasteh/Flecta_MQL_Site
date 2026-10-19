@@ -28,15 +28,21 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Comma-separated ALLOWED_HOSTS from env; sane local + Vercel defaults.
-ALLOWED_HOSTS = [
-    h.strip()
-    for h in os.getenv(
-        "ALLOWED_HOSTS",
-        "localhost,127.0.0.1,[::1],.vercel.app,flectamql.ir,www.flectamql.ir",
-    ).split(",")
-    if h.strip()
+# Comma-separated ALLOWED_HOSTS from env, then always add local + Vercel
+# hosts. The extras are appended even when the env var is set, so a typo or
+# partial value in the dashboard can never cause DisallowedHost on Vercel.
+_CORE_ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "[::1]",
+    ".vercel.app",
+    "flectamql.ir",
+    "www.flectamql.ir",
 ]
+ALLOWED_HOSTS = [
+    h.strip() for h in os.getenv("ALLOWED_HOSTS", "").split(",") if h.strip()
+]
+ALLOWED_HOSTS = list(dict.fromkeys(ALLOWED_HOSTS + _CORE_ALLOWED_HOSTS))
 
 
 
