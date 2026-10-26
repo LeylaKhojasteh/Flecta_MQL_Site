@@ -106,24 +106,19 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"  # noqa: F405
 STATICFILES_DIRS = [BASE_DIR / "statics"]  # noqa: F405
 
-if _has_whitenoise:
-    _static_backend = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    # Never 500 a page just because a hashed static name is missing from the
-    # manifest; fall back to the plain static path instead.
-    _static_options = {"manifest_strict": False}
-else:
-    _static_backend = "django.contrib.staticfiles.storage.StaticFilesStorage"
-    _static_options = {}
-
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        # WhiteNoise is installed on Vercel via requirements.txt.
-        # Local offline fallback keeps `check` green without it.
-        "BACKEND": _static_backend,
-        "OPTIONS": _static_options,
+        # Manifest storage with manifest_strict=False: a missing hashed name
+        # falls back to the plain path instead of raising a 500.
+        # The plain fallback class keeps `check` green without WhiteNoise.
+        "BACKEND": (
+            "flectasite.storage.StaticFilesStorage"
+            if _has_whitenoise
+            else "django.contrib.staticfiles.storage.StaticFilesStorage"
+        ),
     },
 }
 
