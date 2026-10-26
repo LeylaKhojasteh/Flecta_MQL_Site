@@ -133,25 +133,73 @@ COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 
-# ---------------- Media (ephemeral on Vercel!) -----------------
-# Files written to /media disappear on redeploy/cold start.
-# v1 keeps FileSystemStorage so bundled media/blog/* keeps working.
-# For permanent uploads later, move to Supabase Storage (S3 API).
+# ---------------- Media ----------------------------------------
+# Serverless filesystem is ephemeral: uploads vanish on redeploy/cold
+# start. Set the SUPABASE_STORAGE_* env vars to keep uploads in a
+# Supabase Storage bucket (S3-compatible). Local bundled files keep
+# working through FileSystemStorage when the bucket is not configured.
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"  # noqa: F405
 
-# ---------------- Email (env-based, Gmail/SMTP friendly) -------
+_s3_bucket = os.getenv("SUPABASE_STORAGE_BUCKET", "")
+_s3_access_key = os.getenv("SUPABASE_STORAGE_ACCESS_KEY", "")
+_supabase_url = os.getenv("SUPABASE_URL", "").rstrip("/")
+_s3_endpoint = os.getenv(
+    "SUPABASE_S3_ENDPOINT",
+    (_supabase_url + "/storage/v1/s3") if _supabase_url else "",
+)
+_s3_public_url = os.getenv(
+    "SUPABASE_STORAGE_PUBLIC_URL",
+    (
+        _supabase_url + "/storage/v1/object/public/" + _s3_bucket + "/"
+        if _supabase_url and _s3_bucket
+        else ""
+    ),
+)
+if _s3_bucket and _s3_access_key and _s3_endpoint:
+    STORAGES["default"] = {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "access_key": _s3_access_key,
+            "secret_key": os.getenv("SUPABASE_STORAGE_SECRET_KEY", ""),
+            "bucket_name": _s3_bucket,
+            "endpoint_url": _s3_endpoint,
+            "region_name": os.getenv("SUPABASE_S3_REGION", "eu-west-1"),
+            "signature_version": "s3v4",
+            "addressing_style": "path",
+            "default_acl": None,
+            "querystring_auth": False,
+            "file_overwrite": False,
+        },
+    }
+    MEDIA_URL = _s3_public_url or MEDIA_URL
+
+# ---------------- Email (env-based) ---------------------------
+# Defaults point at the project's own mail server; override with env.
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
-EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
+EMAIL_HOST = os.getenv("EMAIL_HOST", "flectamql.ir")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "465"))
 EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL", "False").lower() == "true"
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "False").lower() == "true"
+if EMAIL_USE_SSL and EMAIL_USE_TLS:
+    # Django refuses both at once; SSL on 465 is the intended default.
+    EMAIL_USE_TLS = False
+elif not EMAIL_USE_SSL and not EMAIL_USE_TLS:
+    # No explicit choice: 465 means implicit SSL, anything else STARTTLS.
+    if EMAIL_PORT == 465:
+        EMAIL_USE_SSL = True
+    else:
+        EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "manager@flectamql.ir")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
 EMAIL_TIMEOUT = int(os.getenv("EMAIL_TIMEOUT", "20"))
-DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER or "FLECTA <noreply@example.com>")
+DEFAULT_FROM_EMAIL = os.getenv(
+    "DEFAULT_FROM_EMAIL", "FLECTA MQL <manager@flectamql.ir>"
+)
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
-CONTACT_RECIPIENT_EMAIL = os.getenv("CONTACT_RECIPIENT_EMAIL", EMAIL_HOST_USER or "noreply@example.com")
+CONTACT_RECIPIENT_EMAIL = os.getenv(
+    "CONTACT_RECIPIENT_EMAIL", EMAIL_HOST_USER or "noreply@example.com"
+)
 
 # ---------------- Vercel-specific hardening --------------------
 # debug_toolbar must never load in serverless prod.

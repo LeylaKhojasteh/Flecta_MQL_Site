@@ -34,7 +34,8 @@ load_env(BASE_DIR / ".env")
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Local development opts in explicitly (flectasite.setting.dev sets True).
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ("1", "true", "yes", "on")
 
 # Comma-separated ALLOWED_HOSTS from env, then always add local + Vercel
 # hosts. The extras are appended even when the env var is set, so a typo or
@@ -131,23 +132,16 @@ WSGI_APPLICATION = 'flectasite.wsgi.application'
 
 
 # Database
-
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
-   DATABASES = {
+# Credentials come from the environment; never hardcode them here.
+# flectasite.setting.dev / prod / vercel override this for their targets.
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'flectamq_flecta',
-        'USER': 'flectamq_nasim',
-        'PASSWORD': 'Ug]a5@u*NWtcr@8b',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.getenv('DB_NAME', str(BASE_DIR / 'db.sqlite3')),
+        'USER': os.getenv('DB_USER', ''),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', ''),
+        'PORT': os.getenv('DB_PORT', ''),
     }
 }
 
