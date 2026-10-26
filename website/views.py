@@ -1,3 +1,4 @@
+import logging
 from dataclasses import fields
 
 from django.http import HttpResponseRedirect
@@ -57,7 +58,14 @@ def contact_view(request):
                     reply_to=[email],
                 )
 
-            email_message.send(fail_silently=False)
+            try:
+                email_message.send(fail_silently=False)
+            except Exception:
+                # The request is stored in the database; a broken SMTP setup
+                # must not turn the thanks page into a 500.
+                logging.getLogger(__name__).exception(
+                    "Contact form email could not be sent"
+                )
 
             messages.success(
                 request,
