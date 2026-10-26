@@ -10,9 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import mimetypes
 import os
 from pathlib import Path
 from flectasite.env import load_env
+
+# Some hosts (e.g. minimal Linux images or Windows) don't know these types.
+# With SECURE_CONTENT_TYPE_NOSNIFF a wrong type makes browsers refuse to
+# render the file, so register them explicitly.
+mimetypes.add_type("image/webp", ".webp")
+mimetypes.add_type("image/avif", ".avif")
+mimetypes.add_type("font/woff2", ".woff2")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
