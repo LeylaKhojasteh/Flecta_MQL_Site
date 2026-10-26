@@ -31,7 +31,27 @@ Flecta MQL یک وب‌سایت شرکتی و محتوایی برای معرفی
 
 ## دیتابیس
 
-در محیط توسعه از **SQLite** استفاده می‌شود تا پروژه بدون تنظیم سرویس جداگانه به‌سادگی اجرا شود. نسخه آنلاین با **MySQL** و درایور PyMySQL اجرا می‌شود. ساختار هر دو دیتابیس توسط migrationهای Django یکسان نگه داشته می‌شود.
+در محیط توسعه از **SQLite** استفاده می‌شود. نسخه آنلاین روی Vercel با **PostgreSQL (Supabase)** و از طریق `DATABASE_URL` اجرا می‌شود. تنظیمات MySQL برای هاست‌های سنتی هم با متغیرهای `DB_NAME`، `DB_USER`، `DB_PASSWORD`، `DB_HOST` و `DB_PORT` در `flectasite.setting.prod` پشتیبانی می‌شود. هیچ رمزی در کد ذخیره نمی‌شود.
+
+## متغیرهای محیطی در Vercel
+
+این متغیرها را در Project Settings → Environment Variables برای Production و Preview تنظیم کنید:
+
+| متغیر | ضروری | توضیح |
+| --- | --- | --- |
+| `SECRET_KEY` | بله | کلید امنیتی Django |
+| `DATABASE_URL` | بله | رشته اتصال Supabase (poller پورت 6543) |
+| `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USE_SSL`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD` | بله | SMTP برای فرم تماس و بازیابی رمز |
+| `DEFAULT_FROM_EMAIL`, `CONTACT_RECIPIENT_EMAIL` | خیر | فرستنده و گیرنده پیام‌های تماس |
+| `SUPABASE_URL`, `SUPABASE_STORAGE_BUCKET` | خیر | فعال‌سازی ذخیره دائمی مدیا در Supabase Storage |
+| `SUPABASE_STORAGE_ACCESS_KEY`, `SUPABASE_STORAGE_SECRET_KEY` | خیر | کلیدهای S3 مربوط به Supabase Storage |
+| `SUPABASE_S3_REGION`, `SUPABASE_STORAGE_PUBLIC_URL` | خیر | منطقه و دامنه عمومی باکت |
+
+بدون فایل‌سیستم دائمی، آپلودهای Vercel با هر دیپلوی پاک می‌شوند. برای ذخیره دائمی، یک bucket عمومی در Supabase Storage بسازید، کلیدهای S3 آن را تنظیم کنید و سپس فایل‌های موجود را یک‌بار منتقل کنید:
+
+```powershell
+python manage.py upload_media --settings=flectasite.setting.vercel
+```
 
 ## اجرای پروژه در محیط توسعه
 

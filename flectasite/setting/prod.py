@@ -35,11 +35,12 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'flectamq_flecta',
-        'USER': 'flectamq_nasim',
-        'PASSWORD': 'Ug]a5@u*NWtcr@8b',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '3306'),
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
