@@ -47,7 +47,9 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_USE_SESSIONS = True
 SESSION_COOKIE_SAMESITE = "Strict"
 SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
+SECURE_HSTS_SECONDS = 15768000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 # CSRF origins for admin login on Vercel + custom domain.
 # Example: CSRF_TRUSTED_ORIGINS="https://xxx.vercel.app,https://flectamql.ir"

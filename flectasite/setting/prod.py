@@ -16,8 +16,6 @@ ALLOWED_HOSTS = [
     ).split(",")
     if h.strip()
 ]
-# Keep Vercel previews working even if this module is selected there.
-ALLOWED_HOSTS = list(dict.fromkeys(ALLOWED_HOSTS + [".vercel.app"]))
 
 
 
@@ -69,7 +67,14 @@ COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 
 
-SECURE_BROWSER_XSS_FILTER = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_TRUSTED_ORIGINS = [
+    o.strip()
+    for o in os.getenv(
+        "CSRF_TRUSTED_ORIGINS", "https://flectamql.ir,https://www.flectamql.ir"
+    ).split(",")
+    if o.strip()
+]
 # CSRF_COOKIE_SECURE = True
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'

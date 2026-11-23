@@ -5,6 +5,8 @@ from captcha.fields import CaptchaField
 
 
 class CommentForm(forms.ModelForm):
+    message = forms.CharField(widget=forms.Textarea, max_length=2000)
+    captcha = CaptchaField(label='Security Check')
 
     def __init__(self, *args, user=None, **kwargs):
         super().__init__(*args, **kwargs)

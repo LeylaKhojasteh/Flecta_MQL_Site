@@ -37,14 +37,12 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # Local development opts in explicitly (flectasite.setting.dev sets True).
 DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ("1", "true", "yes", "on")
 
-# Comma-separated ALLOWED_HOSTS from env, then always add local + Vercel
-# hosts. The extras are appended even when the env var is set, so a typo or
-# partial value in the dashboard can never cause DisallowedHost on Vercel.
+# Comma-separated ALLOWED_HOSTS from env, then always add local hosts.
+# Vercel preview domains are only allowed in flectasite.setting.vercel.
 _CORE_ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "[::1]",
-    ".vercel.app",
     "flectamql.ir",
     "www.flectamql.ir",
 ]
@@ -93,10 +91,7 @@ INSTALLED_APPS = [
 ROBOTS_USE_HOST = True
 ROBOTS_USE_SITEMAP = True
 
-#captcha admin setting 
-MULTI_CAPTCHA_ADMIN = {
-    'engine':'simple-captcha'
-}
+
 
 
 

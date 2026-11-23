@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from captcha.fields import CaptchaField
 
 User = get_user_model()
@@ -24,7 +24,12 @@ class SignupForm(UserCreationForm):
         return email
 
 
+class CustomPasswordResetForm(PasswordResetForm):
+    captcha = CaptchaField(label='Security Check')
+
+
 class CustomAuthenticationForm(AuthenticationForm):
+    captcha = CaptchaField(label='Security Check')
 
     username = forms.CharField(
         label='Username or Email',
@@ -44,18 +49,18 @@ class CustomAuthenticationForm(AuthenticationForm):
         password = self.cleaned_data.get('password')
 
         if not username or not password:
-            return self.cleaned_data
+            return super().clean()
 
         if '@' in username:
-            try:
-                user = User.objects.get(email__iexact=username)
-                username = user.username
-            except User.DoesNotExist:
-                raise forms.ValidationError('email or password is incorrect.')
+            user = User.objects.filter(email__iexact=username).first()
+            username = user.username if user else None
 
-        self.user_cache = authenticate(username=username, password=password)
+        self.user_cache = None
+        if username:
+            self.user_cache = authenticate(self.request, username=username, password=password)
 
         if self.user_cache is None:
             raise forms.ValidationError('username or password is incorrect.')
 
+        self.confirm_login_allowed(self.user_cache)
         return self.cleaned_data

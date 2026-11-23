@@ -241,15 +241,18 @@
                             <div class="account-dropdown-divider"></div>
 
 
-                            <a href="{% url 'accounts:logout' %}" class="account-dropdown-link account-logout">
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M10 4H5V20H10"></path>
-                                    <path d="M14 8L18 12L14 16"></path>
-                                    <path d="M18 12H9"></path>
-                                </svg>
+                            <form method="post" action="{% url 'accounts:logout' %}" class="logout-form">
+                                {% csrf_token %}
+                                <button type="submit" class="account-dropdown-link account-logout">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M10 4H5V20H10"></path>
+                                        <path d="M14 8L18 12L14 16"></path>
+                                        <path d="M18 12H9"></path>
+                                    </svg>
 
-                                <span>Logout</span>
-                            </a>
+                                    <span>Logout</span>
+                                </button>
+                            </form>
 
                         </div>
 
@@ -355,15 +358,18 @@
                     </div>
 
 
-                    <a href="{% url 'accounts:logout' %}" class="mobile-auth-link mobile-logout-link">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M10 4H5V20H10"></path>
-                            <path d="M14 8L18 12L14 16"></path>
-                            <path d="M18 12H9"></path>
-                        </svg>
+                    <form method="post" action="{% url 'accounts:logout' %}" class="logout-form">
+                        {% csrf_token %}
+                        <button type="submit" class="mobile-auth-link mobile-logout-link">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 4H5V20H10"></path>
+                                <path d="M14 8L18 12L14 16"></path>
+                                <path d="M18 12H9"></path>
+                            </svg>
 
-                        Logout
-                    </a>
+                            Logout
+                        </button>
+                    </form>
 
 
                     {% else %}

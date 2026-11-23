@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.forms import AuthenticationForm
-from .forms import SignupForm, CustomAuthenticationForm
+from .forms import SignupForm, CustomAuthenticationForm, CustomPasswordResetForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordResetView
@@ -32,7 +32,8 @@ def login_view(request):
 
 @login_required
 def logout_view(request):
-    logout(request)
+    if request.method == 'POST':
+        logout(request)
     return redirect('/')
 
 
@@ -54,6 +55,7 @@ def signup_view(request):
         
         
 class CustomPasswordResetView(PasswordResetView):
+    form_class = CustomPasswordResetForm
     template_name = 'accounts/forget-password.html'
     email_template_name = 'accounts/reset-password-email.html'
     success_url = reverse_lazy('accounts:password_reset_done')
