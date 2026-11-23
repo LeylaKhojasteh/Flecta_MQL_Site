@@ -13,11 +13,6 @@ ALLOWED_HOSTS = []
 
 # INSTALLED_APPS = []
 
-#sites framework
-SITE_ID = 3
-
-
-
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 

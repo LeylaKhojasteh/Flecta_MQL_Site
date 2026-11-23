@@ -1,6 +1,7 @@
 from django.contrib.syndication.views import Feed
 from django.urls import reverse
 from blog.models import Post
+from blog.templatetags.blog_tags import clean_html
 
 
 class LatestEntriesFeed(Feed):
@@ -15,5 +16,5 @@ class LatestEntriesFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return item.content[:100]
+        return clean_html(item.content)[:100]
 

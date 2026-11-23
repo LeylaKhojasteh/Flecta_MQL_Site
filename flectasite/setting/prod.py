@@ -23,10 +23,6 @@ ALLOWED_HOSTS = list(dict.fromkeys(ALLOWED_HOSTS + [".vercel.app"]))
 
 # INSTALLED_APPS = []
 
-#sites framework
-SITE_ID = 3
-
-
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Database

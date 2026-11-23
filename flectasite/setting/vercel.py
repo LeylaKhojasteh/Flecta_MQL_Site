@@ -1,9 +1,5 @@
 import os
 
-# Ensure base settings import never crashes the Vercel build when
-# SECRET_KEY is only available as a Vercel Environment Variable.
-os.environ.setdefault("SECRET_KEY", "vercel-build-placeholder-change-me")
-
 from flectasite.settings import *  # noqa: F401,F403
 
 try:
@@ -17,7 +13,7 @@ except ImportError:  # local env without Vercel deps (offline); Vercel build ins
 
 DEBUG = False
 
-SECRET_KEY = os.getenv("SECRET_KEY", "vercel-build-placeholder-change-me")
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # Vercel domains + production domain, comma separated via env.
 # Django matches subdomains with a leading dot: ".vercel.app" covers

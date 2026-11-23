@@ -11,6 +11,9 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'flectasite.settings')
+if os.getenv("VERCEL"):
+    os.environ["DJANGO_SETTINGS_MODULE"] = "flectasite.setting.vercel"
+else:
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "flectasite.setting.prod")
 
 application = get_asgi_application()

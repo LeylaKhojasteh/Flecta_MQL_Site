@@ -56,7 +56,7 @@ ALLOWED_HOSTS = list(dict.fromkeys(ALLOWED_HOSTS + _CORE_ALLOWED_HOSTS))
 
 
 #sites framework
-SITE_ID = 3
+SITE_ID = int(os.getenv("SITE_ID", "3"))
 
 
 

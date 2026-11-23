@@ -170,7 +170,7 @@ blog-page blog-single-page
 
             <article class="article-content-card">
                 <div class="article-content">
-                    {{ post.content|safe }}
+                    {{ post.content|clean_html }}
                 </div>
 
                 <footer class="article-footer">
