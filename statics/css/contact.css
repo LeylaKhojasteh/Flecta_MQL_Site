@@ -237,31 +237,6 @@
     letter-spacing: -1.2px;
 }
 
-.secure-form-badge{
-    display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-    gap: 7px;
-    padding: 7px 11px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-round);
-    background: var(--surface-secondary);
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    font-weight: 700;
-}
-
-.secure-form-badge svg{
-    width: 15px;
-    height: 15px;
-    fill: none;
-    stroke: var(--primary-light);
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-
 /* =========================================
    Form
 ========================================= */
@@ -696,6 +671,30 @@
         gap: 10px;
     }
 
+    .form-row-pair{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .form-row-pair .input-icon{
+        left: 10px;
+    }
+
+    .form-row-pair .input-icon svg{
+        width: 16px;
+        height: 16px;
+    }
+
+    .form-row-pair input,
+    .form-row-pair select{
+        padding: 0 26px 0 32px;
+    }
+
+    .form-row-pair .select-wrapper::after{
+        right: 10px;
+        width: 6px;
+        height: 6px;
+    }
+
     .form-group label{
         margin-bottom: 5px;
     }
@@ -707,9 +706,10 @@
     }
 
     .contact-form textarea{
-        min-height: 120px;
-        padding: 12px 14px;
-        line-height: 1.6;
+        height: 60px;
+        min-height: 60px;
+        padding: 10px 14px;
+        line-height: 1.55;
     }
 
     .field-help{
@@ -980,17 +980,6 @@
 
 
 /* =========================================
-   SECURE BADGE
-========================================= */
-
-.secure-form-badge{
-    background: rgba(255, 255, 255, 0.035) !important;
-
-    border-color: rgba(255, 255, 255, 0.09);
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}/* =========================================
    SERVICE CARDS
 ========================================= */
 
